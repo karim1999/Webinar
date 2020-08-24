@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/webinar/register', 'WebinarController@register')->name('webinar.register');
+Route::get('/webinar/event', 'WebinarController@event')->name('webinar.event');
 
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function (){
     Route::get('/', function (){

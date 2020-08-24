@@ -1,0 +1,162 @@
+//REGISTER SCREEN
+@media screen and (max-width: 1440px) {
+    .bg-container .left-panel .webinar-title {
+        font-size: 7rem;
+        line-height: 7rem;
+    }
+    .company-logo-white {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .form__group {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .bg-container {
+        flex-direction: column;
+    }
+    .bg-container .left-panel {
+        width: 100%;
+        height: 100%;
+    }
+    .bg-container .left-panel .webinar-title {
+        text-align: center;
+        font-size: 4rem;
+        line-height: 4rem;
+        margin-top: 10rem;
+    }
+    .bg-container .left-panel .company-logo-white {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .company-logo-white {
+        width: 25rem;
+    }
+    .bg-container .right-panel {
+        width: 100%;
+    }
+    .form__group {
+        width: 100%;
+    }
+    .bg-container .right-panel__header {
+        font-size: 3.2rem;
+        margin-top: 2rem;
+    }
+    .bg-container .right-panel__content-box {
+        width: 80%;
+    }
+    .bg-container .right-panel .form-btn {
+        margin: 2.5rem 0;
+    }
+}
+
+
+
+
+
+//EVENT-SCREEN
+@media screen and (min-width: 1024px) {
+    .overlay__content .speakers-profile-section {
+        justify-content: space-around;
+    }
+    .overlay__content .social-feed {
+        justify-content: space-around;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .overlay__content .resources-list {
+        justify-content: space-between;
+    }
+    main .video-box {
+        width: 75%;
+    }
+    main .chat-window {
+        width: 30%;
+    }
+    .overlay__content {
+        width: 100%;
+        padding: 3rem 3rem;
+    }
+    .overlay__content .social-feed {
+        justify-content: center;
+    }
+    .overlay__content .twitter-card {
+        background-color: #1CA9F4;
+        margin-right: 3rem;
+        margin-bottom: 3rem;
+    }
+    .overlay__content .speakers-profile-section {
+        justify-content: center;
+    }
+    .overlay__content .speakers-profile-section .speaker-profile-card {
+        margin-right: 3rem;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    main .video-box {
+        width: 100%;
+        min-height: 100%;
+    }
+    main .chat-window {
+        width: 100%;
+    }
+    footer .footer-icon:not(:last-child) {
+        margin-right: 0.5rem;
+    }
+    // footer .footer-icon {
+    //     width: 3.8rem;
+    //     border-radius: 50%;
+    // }
+    iframe {
+        width: 100%;
+        height: 26rem;
+    }
+    .overlay {
+        width: 100%;
+    }
+    .overlay__content {
+        width: 100%;
+        padding: 3rem;
+    }
+    .overlay__content .resources-list {
+        justify-content: center;
+    }
+    .overlay__content .resources-list-card {
+        margin-right: 2rem;
+    }
+    .overlay__content .header {
+       align-items: center;
+    }
+    .overlay__content .polling-content {
+        width: 100%;
+        padding: 0rem;
+    }
+    .overlay__content .polling-content .polling-question {
+        font-size: 2rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .sm-hr {
+        width: 50%;
+    }
+    .overlay__content .polling-content .polling-answer {
+        width: 100%;
+    }
+    .overlay__content .questions {
+        width: 100%;
+        padding: 0;
+    }
+    .overlay__content .questions .polling-question {
+        font-size: 2rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

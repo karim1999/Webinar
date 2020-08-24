@@ -1,0 +1,66 @@
+.bg-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  .left-panel {
+    width: 35%;
+    background-image: linear-gradient(to bottom, #343434, #000000);
+    box-shadow: 1rem 0.3rem 6rem rgba($color: #7e7e7e, $alpha: 0.22);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .company-logo-white {
+      position: absolute;
+      top: 8%;
+      left: 20%;
+    }
+    .webinar-title {
+      color: white;
+      font-size: 10rem;
+      text-transform: uppercase;
+      font-weight: 200;
+      line-height: 9rem;
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+  .right-panel {
+    width: 65%;
+    // background-color: orangered;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &__content-box {
+      width: 60%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__header {
+      font-family: inherit;
+      font-weight: 200;
+      font-size: 6rem;
+      text-transform: uppercase;
+      align-self: flex-start;
+      margin-bottom: 2rem;
+    }
+    &__form {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .form-btn {
+      margin-top: 2.5rem;
+      padding: 1.5rem 4rem;
+      border-radius: 0.6rem;
+      background-image: linear-gradient(to right, #2B2B2B,#4D4D4D);
+        color: white;
+        font-size: 1.7rem;
+        font-weight: 400;
+        border: none;
+        // box-shadow: 2rem 2rem 3rem rgba($color: #000000, $alpha: 0.50);
+    }
+  }
+}

@@ -1,0 +1,348 @@
+.overlay {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    // cursor: pointer;
+    padding: 2rem;
+    &__content {
+        width: 95%;
+        min-height: 70rem;
+        background-color: #F7F9FB;
+        padding: 3rem 9rem;
+        box-shadow: 0 0.3rem 6rem rgba($color: #000000, $alpha: 0.76);
+        position: relative;
+        .exit {
+            position: absolute;
+            top: -1.5rem;
+            right: -1.5rem;
+            border-radius: 50%;
+            box-shadow: 0 0.3rem 0.6rem rgba($color: #000000, $alpha: 0.2);
+            cursor: pointer;
+        }
+        .header {
+            display: flex;
+            margin-top: 2rem;
+            .overlay__content-header {
+                margin-right: auto;
+                margin-bottom: 1rem;
+                font-size: 3rem;
+                font-weight: 300;
+            }
+            &__icons {
+                .thumbnail {
+                    margin-right: 2rem;
+                }
+            }
+        }
+        hr {
+            height: 2px;
+            background-color: black;
+            border: none;
+        }
+        //RESOURCES SECTION
+        .resources-list {
+            width: 100%;
+            display: flex;
+            height: 60rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            &-card {
+                width: 26rem;
+                height: 22.5rem;
+                border-radius: 1.4rem;
+                background-color: white;
+                padding: 2rem;
+                box-shadow: 0 0.3rem 3rem rgba($color: #000000, $alpha: 0.03);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1.5rem; 
+                transition: transform .2s;
+                &:hover {
+                    transform: scale(1.2);
+                    box-shadow: 0 0.3rem 5rem rgba($color: #1E5093, $alpha: 0.3);
+                }
+                .card-icons-box {
+                    display: flex;
+                    width: 100%;
+                    justify-content: flex-end;
+                }
+                .card-icon {
+                    cursor: pointer;
+                    &:not(:last-child) {
+                        margin-right: 1rem;
+                    }
+                }
+                .pdf-icon {
+                    margin-top: 1.5rem;
+                }
+                .card-text {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    margin-top: 3rem;
+                }
+            }
+        }
+        //POLL SECTION
+        .polling-content {
+            width: 100%;
+            min-height: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 6rem ;
+            .polling-question {
+                font-size: 2.4rem;
+                font-weight: 600;
+                width: 75%;
+            }
+
+            .polling-answer {
+                padding: 2rem 4rem;
+                background-color: white;
+                border-radius: 0.8rem;
+                box-shadow: 0.6rem 1rem 0.8rem rgba($color: #000000, $alpha: 0.04);
+                width: 60%;
+                position: relative;
+                margin: 1.5rem 0;
+                cursor: pointer;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 2%;
+                    background-color: #DBEEFF;
+                    border-radius: 0.8rem 0 0 0.8rem;
+                }
+                &__text {
+                    font-size: 1.6rem;
+                    font-family: 400;
+                }
+                &:focus &::before {
+                    width: 50%;
+                }
+            }
+        }
+        //Q&A SECTION
+        .questions {
+            width: 100%;
+            min-height: 30rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 6rem ;
+            .polling-question {
+                font-size: 2.4rem;
+                font-weight: 600;
+                width: 75%;
+            }
+            .adding-question {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                .question-text {
+                    padding: 2rem;
+                    height: 12rem;
+                    border: none;
+                    box-shadow: -5px 5px 0.5rem rgba($color: #000000, $alpha: 0.02);
+                    resize: none;
+                    font-family: inherit;
+                    font-weight: 500;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+            .submit-btn {
+                padding: 2rem;
+                color: white;
+                border: none;
+                background-image: linear-gradient(to right, #191919, #404040);
+                font-size: 2.2rem;
+                font-weight: 600;
+                margin-top: 1rem;
+                font-family: inherit;
+            }
+        }
+        //SOCIAL MEDIA FEED
+        .types-social-media {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 2rem;
+            .all-types {
+                padding: 0.5rem 2rem;
+                background-color: #1E7CEB;
+                border-radius: 1.3rem;
+                color: white;
+                font-weight: 600;
+                font-size: 1.2rem;
+                transition: all .2s;
+                cursor: pointer;
+                &:hover {
+                    background-color: lightblue;
+                    color: black;
+                }
+            }
+            .social-icon {
+                margin-left: 1rem;
+                cursor: pointer;
+            }
+        }
+        .social-feed {
+            width: 100%;
+            min-height: 50rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            overflow-y: scroll;
+            height: 55rem;
+            &__card {
+                width: 35rem;
+                height: 26rem;
+                background-color: white;
+                border-radius: 1.4rem;
+                box-shadow: 0 0.3rem 3rem rgba($color: #000000, $alpha: 0.03);
+                // padding: 2rem;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 2rem 4rem;
+                margin-bottom: 1.5rem;
+                &-icon {
+                    position: absolute;
+                    top: 7.5%;
+                    left: 7.5%;
+                }
+                .feed-info {
+                    font-size: 1.8rem;
+                    font-weight: 400;
+                    width: 70%;
+                    color: white;
+                    margin-top: 1.6rem;
+                }
+                .tweet-author {
+                    font-size: 2.4rem;
+                    font-weight: 400;
+                    color: white;
+                    margin-top: 1rem;
+                }
+            }
+        }
+        .twitter-card {
+            background-color: #1CA9F4;
+        }
+        .facebook-inst-card {
+            justify-content: flex-end;
+            background-image: url('/img/Transpo_G70_TA-518126.jpg');
+            background-size: 100% 100%;
+            .facebook-text {
+                font-size: 1rem;
+            font-weight: 400;
+
+            }
+        }
+
+        //AGENDA SECTION
+        .agenda-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 50rem;
+            margin-top: 4rem;
+            overflow-y: scroll;
+            &-item {
+                display: flex;
+                align-items: center;
+                .from-to-time {
+                    background-image: linear-gradient(to right bottom, #2B2B2B, #4D4D4D);
+                    padding: 2rem;
+                    border-radius: 1rem;
+                    .from, .to {
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        color: white;
+                    }
+                    hr {
+                        background-color: #707070;
+                        margin: 0.5rem 0;
+                    }
+                }
+                .appointment-info {
+                    margin-left: 1.5rem;
+                    .appointment-title {
+                        font-size: 1.8rem;
+                        font-weight: 600;
+                        margin-bottom: 1.5rem;
+                    }
+                    .appointment-summary {
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+            .agenda-hr {
+                background-color: #E0E1E3;
+                border-width: 1px;
+                margin: 2rem 0;
+            }
+        }
+        //SPEAKERS PROFILE SECTION
+        .speakers-profile-section {
+            width: 100%;
+            height: 50rem;
+            // background-color: orangered;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            overflow-y: scroll;
+            .speaker-profile-card {
+                width: 35rem;
+                min-height: 25rem;
+                background-color: white;
+                border-radius: 1.4rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+                box-shadow: 0 0.3rem 3rem rgba($color: #000000, $alpha: 0.03);
+                margin: 1.5rem 0;
+                .prof-pic {
+                    margin-bottom: 2.5rem;
+                }
+                .speaker-name {
+                    align-self: flex-start;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                }
+                .bio-summary {
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    line-height: 2rem;
+                }
+            }
+        }
+    }
+}
