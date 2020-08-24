@@ -13,8 +13,8 @@
 <body>
 <div class="bg-container">
     <!-- <img src="img/Group 680.png" alt="picture" class="left-panel" /> -->
-    <div class="left-panel">
-        <img src="{{$setting->getFirstMediaUrl('logo')}}" alt="company logo" class="company-logo-white">
+    <div class="left-panel" style="background-image: linear-gradient(to bottom, {{$setting->gradient_from}}, {{$setting->gradient_to}})">
+        <img style="height: 30px; width: 250px" src="{{$setting->getFirstMediaUrl('logo')}}" alt="company logo" class="company-logo-white">
         <h1 class="webinar-title" style="text-align: center;">
 {{--            <span>Virtual</span> <br> Event <br> 2020--}}
             <span>
@@ -25,13 +25,14 @@
     <div class="right-panel">
         <div class="right-panel__content-box">
             <h1 class="right-panel__header">Register</h1>
-            <form action="#" class="right-panel__form" id="register-form">
+            <form action="{{route('webinar.register')}}" method="post" class="right-panel__form" id="register-form">
+                @csrf
                 <div class="form__group field">
                     <input
                         type="input"
                         class="form__field"
                         placeholder="First Name"
-                        name="first-name"
+                        name="first_name"
                         id="first-name"
                         required
                     />
@@ -42,7 +43,7 @@
                         type="input"
                         class="form__field"
                         placeholder="Last Name"
-                        name="last-name"
+                        name="last_name"
                         id="last-name"
                         required
                     />
@@ -53,7 +54,7 @@
                         type="email"
                         class="form__field"
                         placeholder="Email"
-                        name="email-id"
+                        name="email"
                         id="email-id"
                         required
                     />
@@ -111,7 +112,7 @@
                     <label for="city" class="form__label">City</label>
                 </div>
             </form>
-            <button type="submit" class="form-btn" form="register-form"> Submit</button>
+            <button  style="background-image: linear-gradient(to bottom, {{$setting->gradient_from}}, {{$setting->gradient_to}})" type="submit" class="form-btn" form="register-form"> Submit</button>
         </div>
     </div>
 </div>

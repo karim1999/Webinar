@@ -143,6 +143,13 @@
                                 </a>
                             </li>
                             <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="nav-item">
+                                <a href="{{route('dashboard.guest.index')}}" class="nav-link">
+                                    <span class="nav-title text-uppercase">Guests</span>
+                                </a>
+                            </li>
+                            <!--end::Item-->
 
                             <!--begin::Item-->
 {{--                            <li class="nav-item">--}}

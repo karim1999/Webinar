@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Guest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class QuestController extends Controller
+class GuestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,9 @@ class QuestController extends Controller
     public function index()
     {
         //
+        return view('dashboard.guest.index', [
+            'guests' => Guest::all()
+        ]);
     }
 
     /**

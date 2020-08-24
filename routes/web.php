@@ -21,7 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/webinar/register', 'WebinarController@register')->name('webinar.register');
-Route::get('/webinar/event', 'WebinarController@event')->name('webinar.event');
+Route::post('/webinar/register', 'WebinarController@register_guest')->name('webinar.register');
+Route::get('/webinar', 'WebinarController@event')->name('webinar.event');
 
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function (){
     Route::get('/', function (){
@@ -29,6 +30,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     });
     Route::resource('/setting', 'dashboard\SettingController');
     Route::resource('/question', 'dashboard\QuestionController');
+    Route::resource('/guest', 'dashboard\GuestController');
     Route::resource('/poll', 'dashboard\PollController');
     Route::resource('/message', 'dashboard\MessageController');
     Route::resource('/resource', 'dashboard\ResourceController');

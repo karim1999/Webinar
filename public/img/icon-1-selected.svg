@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g id="icon-1-selected" transform="translate(-440 -1000)">
+    <g id="Group_533" data-name="Group 533" transform="translate(422)">
+      <circle id="Ellipse_2" data-name="Ellipse 2" cx="32" cy="32" r="32" transform="translate(18 1000)" fill="#fff" opacity="0.996"/>
+      <circle id="Ellipse_3" data-name="Ellipse 3" cx="29" cy="29" r="29" transform="translate(21 1003)" fill="#343434"/>
+    </g>
+    <g id="list_1_" data-name="list (1)" transform="translate(398.25 1019)">
+      <g id="Group_501" data-name="Group 501" transform="translate(68.875)">
+        <g id="Group_500" data-name="Group 500">
+          <path id="Path_79" data-name="Path 79" d="M168.938,1.625h-1.765a2.438,2.438,0,0,0-4.6,0h-1.763a.813.813,0,0,0-.812.813v3.25a.813.813,0,0,0,.813.813h8.125a.813.813,0,0,0,.813-.812V2.438A.813.813,0,0,0,168.938,1.625Z" transform="translate(-160)" fill="#fff"/>
+        </g>
+      </g>
+      <g id="Group_503" data-name="Group 503" transform="translate(64 3.25)">
+        <g id="Group_502" data-name="Group 502">
+          <path id="Path_80" data-name="Path 80" d="M81.875,64H80.25v2.438a2.44,2.44,0,0,1-2.437,2.438H69.688a2.44,2.44,0,0,1-2.437-2.437V64H65.625A1.628,1.628,0,0,0,64,65.625v19.5a1.607,1.607,0,0,0,1.625,1.625h16.25A1.607,1.607,0,0,0,83.5,85.125v-19.5A1.607,1.607,0,0,0,81.875,64ZM73.513,78.388l-3.25,3.25a.816.816,0,0,1-1.15,0l-1.625-1.625a.812.812,0,0,1,1.149-1.149l1.051,1.05,2.675-2.675a.813.813,0,0,1,1.15,1.149Zm0-6.5-3.25,3.25a.816.816,0,0,1-1.15,0l-1.625-1.625a.812.812,0,0,1,1.149-1.149l1.051,1.05,2.675-2.675a.813.813,0,0,1,1.15,1.149Zm5.925,8.362h-3.25a.813.813,0,0,1,0-1.625h3.25a.813.813,0,0,1,0,1.625Zm0-6.5h-3.25a.813.813,0,0,1,0-1.625h3.25a.813.813,0,0,1,0,1.625Z" transform="translate(-64 -64)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

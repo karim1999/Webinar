@@ -69,7 +69,7 @@
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .overlay__content .resources-list {
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
     main .video-box {
         width: 75%;

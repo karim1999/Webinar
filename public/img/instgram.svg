@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+  <g id="instgram" transform="translate(-628 -181)">
+    <circle id="Ellipse_7" data-name="Ellipse 7" cx="15.5" cy="15.5" r="15.5" transform="translate(628 181)" fill="#fd9200"/>
+    <g id="instagram" transform="translate(635 188)">
+      <path id="Path_96" data-name="Path 96" d="M11.974,0H4.444A4.449,4.449,0,0,0,0,4.444v7.53a4.449,4.449,0,0,0,4.444,4.444h7.53a4.449,4.449,0,0,0,4.444-4.444V4.444A4.449,4.449,0,0,0,11.974,0ZM8.209,12.7A4.489,4.489,0,1,1,12.7,8.209,4.494,4.494,0,0,1,8.209,12.7Zm4.6-7.92a1.327,1.327,0,1,1,1.327-1.327A1.328,1.328,0,0,1,12.806,4.779Zm0,0" fill="#fff"/>
+      <path id="Path_97" data-name="Path 97" d="M149.546,146.02a3.527,3.527,0,1,0,3.527,3.527A3.531,3.531,0,0,0,149.546,146.02Zm0,0" transform="translate(-141.337 -141.337)" fill="#fff"/>
+      <path id="Path_98" data-name="Path 98" d="M388.356,96.3a.364.364,0,1,0,.364.364A.364.364,0,0,0,388.356,96.3Zm0,0" transform="translate(-375.55 -93.213)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

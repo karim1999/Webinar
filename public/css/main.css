@@ -173,7 +173,7 @@ body {
   width: 100%;
   display: flex;
   height: 60rem;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 2rem;
   overflow-y: scroll;
@@ -829,7 +829,7 @@ footer .footer-icon:not(:last-child) {
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .overlay__content .resources-list {
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   main .video-box {

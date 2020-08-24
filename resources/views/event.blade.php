@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="top-bar">
-    <img src="{{asset("img/Image 2.png")}}" alt="logo" class="top-bar__logo" />
+    <img src="{{$setting->getFirstMediaUrl('logo')}}" alt="logo" style="height: 30px; width: 250px" class="top-bar__logo" />
 </div>
 <main>
     <div class="video-box">
@@ -33,7 +33,7 @@
         <div class="chat-window__comments-box">
             <div class="user-comments-box">
                 <img
-                    src="img/profile-pic.png"
+                    src="{{asset('img/profile-pic.png')}}"
                     alt="profile-pic"
                     class="user-comments-box__profile-pic"
                 />
@@ -47,7 +47,7 @@
             </div>
             <div class="user-comments-box">
                 <img
-                    src="img/profile-pic.png"
+                    src="{{asset('img/profile-pic.png')}}"
                     alt="profile-pic"
                     class="user-comments-box__profile-pic"
                 />
@@ -61,7 +61,7 @@
             </div>
             <div class="user-comments-box">
                 <img
-                    src="img/profile-pic.png"
+                    src="{{asset('img/profile-pic.png')}}"
                     alt="profile-pic"
                     class="user-comments-box__profile-pic"
                 />
@@ -75,7 +75,7 @@
             </div>
             <div class="user-comments-box">
                 <img
-                    src="img/profile-pic.png"
+                    src="{{asset('img/profile-pic.png')}}"
                     alt="profile-pic"
                     class="user-comments-box__profile-pic"
                 />
@@ -105,7 +105,7 @@
 <footer>
     <div class="footer-icon-box" onclick="onResourcesList()">
         <img
-            src="img/icon-1.svg"
+            src="{{asset('img/icon-1.svg')}}"
             alt="resources-list"
             class="footer-icon"
             id="resouces-icon"
@@ -114,7 +114,7 @@
     </div>
     <div class="footer-icon-box" onclick="onPolling()">
         <img
-            src="img/icon-2.svg"
+            src="{{asset('img/icon-2.svg')}}"
             alt="resources-list"
             class="footer-icon"
             id="polling-icon"
@@ -123,7 +123,7 @@
     </div>
     <div class="footer-icon-box" onclick="onQA()">
         <img
-            src="img/icon-3.svg"
+            src="{{asset('img/icon-3.svg')}}"
             alt="resources-list"
             class="footer-icon"
             id="QA-icon"
@@ -132,7 +132,7 @@
     </div>
     <div class="footer-icon-box" onclick="onSocialFeed()">
         <img
-            src="img/icon-4.svg"
+            src="{{asset('img/icon-4.svg')}}"
             alt="resources-list"
             class="footer-icon"
             id="social-feed-icon"
@@ -141,7 +141,7 @@
     </div>
     <div class="footer-icon-box" onclick="onEventAgenda()">
         <img
-            src="img/icon-5.svg"
+            src="{{asset('img/icon-5.svg')}}"
             alt="event-agenda"
             class="footer-icon"
             id="event-agena-icon"
@@ -149,14 +149,14 @@
         <span class="icon-title" id="even-agena-title">Event Agenda</span>
     </div>
     <div class="footer-icon-box" onclick="onSpeakersProfile()">
-        <img src="img/icon-6.svg" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
+        <img src="{{asset('img/icon-6.svg')}}" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
         <span class="icon-title" id="speakers-profile-title">Speakers Profile</span>
     </div>
 </footer>
 <div class="overlay" id="resources-list">
     <div class="overlay__content">
         <img
-            src="img/exit.svg"
+            src="{{asset('img/exit.svg')}}"
             alt="exit"
             class="exit"
             onclick="offResourcesList()"
@@ -164,51 +164,31 @@
         <div class="header">
             <h1 class="overlay__content-header">Resources List</h1>
             <div class="header__icons">
-                <img src="img/thumbnail.svg" alt="thumbnail" class="thumbnail" />
-                <img src="img/list-view.svg" alt="list-view" class="listview" />
+                <img src="{{asset('img/thumbnail.svg')}}" alt="thumbnail" class="thumbnail" />
+                <img src="{{asset('img/list-view.svg')}}" alt="list-view" class="listview" />
             </div>
         </div>
         <hr />
         <div class="resources-list">
-            <div class="resources-list-card">
-                <div class="card-icons-box">
-                    <img src="img/eye.svg" alt="eye" class="card-icon" />
-                    <img src="img/download.svg" alt="download" class="card-icon" />
+            @foreach($resources as $resource)
+                <div class="resources-list-card">
+                    <div class="card-icons-box">
+                        <img src="{{asset('img/eye.svg')}}" alt="eye" class="card-icon" />
+                        <a href="{{$resource->getFirstMediaUrl('file')}}" target="_blank">
+                            <img src="{{asset('img/download.svg')}}" alt="download" class="card-icon" />
+                        </a>
+                    </div>
+                    <img src="{{asset('img/pdf.svg')}}" alt="pdf" class="pdf-icon" />
+                    <p class="card-text">{{$resource->name}}</p>
                 </div>
-                <img src="img/pdf.svg" alt="pdf" class="pdf-icon" />
-                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="resources-list-card">
-                <div class="card-icons-box">
-                    <img src="img/eye.svg" alt="eye" class="card-icon" />
-                    <img src="img/download.svg" alt="download" class="card-icon" />
-                </div>
-                <img src="img/pdf.svg" alt="pdf" class="pdf-icon" />
-                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="resources-list-card">
-                <div class="card-icons-box">
-                    <img src="img/eye.svg" alt="eye" class="card-icon" />
-                    <img src="img/download.svg" alt="download" class="card-icon" />
-                </div>
-                <img src="img/pdf.svg" alt="pdf" class="pdf-icon" />
-                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
-            <div class="resources-list-card">
-                <div class="card-icons-box">
-                    <img src="img/eye.svg" alt="eye" class="card-icon" />
-                    <img src="img/download.svg" alt="download" class="card-icon" />
-                </div>
-                <img src="img/pdf.svg" alt="pdf" class="pdf-icon" />
-                <p class="card-text">Lorem ipsum dolor sit amet.</p>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
 <div class="overlay" id="polling">
     <div class="overlay__content">
         <img
-            src="img/exit.svg"
+            src="{{asset('img/exit.svg')}}"
             alt="exit"
             class="exit"
             onclick="offPolling()"
@@ -217,53 +197,53 @@
             <h1 class="overlay__content-header">Polling</h1>
         </div>
         <hr />
-        <div class="polling-content">
-            <h1 class="polling-question">
-                Curabitur bibendum eros ac massa placerat, a congue massa feugiat ?
-            </h1>
-            <div class="sm-hr"></div>
-            <div class="polling-answer">
-                <p class="polling-answer__text">Accumsan Vestibulum Non</p>
+        @foreach($polls as $poll)
+            <div class="polling-content">
+                <h1 class="polling-question">
+                    {{$poll->question}}
+                </h1>
+                <div class="sm-hr"></div>
+                @foreach($poll->options as $option)
+                <div class="polling-answer">
+                    <p class="polling-answer__text">{{$option->option}}</p>
+                </div>
+                @endforeach
             </div>
-            <div class="polling-answer">
-                <p class="polling-answer__text">Accumsan Vestibulum Non</p>
-            </div>
-            <div class="polling-answer">
-                <p class="polling-answer__text">Accumsan Vestibulum Non</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 <div class="overlay" id="QA">
     <div class="overlay__content">
-        <img src="img/exit.svg" alt="exit" class="exit" onclick="offQA()" />
+        <img src="{{asset('img/exit.svg')}}" alt="exit" class="exit" onclick="offQA()" />
         <div class="header">
             <h1 class="overlay__content-header">Questions and Answers</h1>
         </div>
         <hr />
-        <div class="questions">
-            <h1 class="polling-question">
-                Curabitur bibendum eros ac massa placerat, a congue massa feugiat ?
-            </h1>
-            <div class="sm-hr"></div>
-            <form action="#" class="adding-question">
-            <textarea
-                name="question"
-                id="question"
-                cols="30"
-                rows="10"
-                class="question-text"
-                placeholder="Type your questions here"
-            ></textarea>
-                <button class="submit-btn">Submit</button>
-            </form>
-        </div>
+        @foreach($questions as $question)
+            <div class="questions">
+                <h1 class="polling-question">
+                    {{$question->question}}
+                </h1>
+                <div class="sm-hr"></div>
+                <form action="#" class="adding-question">
+                <textarea
+                    name="question_{{$question->id}}"
+                    id="question"
+                    cols="30"
+                    rows="10"
+                    class="question-text"
+                    placeholder="Type your answer here"
+                ></textarea>
+                    <button class="submit-btn">Submit</button>
+                </form>
+            </div>
+        @endforeach
     </div>
 </div>
 <div class="overlay" id="social-feed">
     <div class="overlay__content">
         <img
-            src="img/exit.svg"
+            src="{{asset('img/exit.svg')}}"
             alt="exit"
             class="exit"
             onclick="offSocialFeed()"
@@ -274,7 +254,7 @@
         <hr />
         <div class="types-social-media">
             <span class="all-types">All</span>
-            <img src="img/twttier.svg" alt="twttier" class="social-icon" />
+            <img src="{{asset('img/twttier.svg')}}" alt="twttier" class="social-icon" />
             <img src="img/facebook.svg" alt="facebook" class="social-icon" />
             <img src="img/instgram.svg" alt="instgram." class="social-icon" />
         </div>
@@ -365,7 +345,7 @@
 <div class="overlay" id="event-agenda">
     <div class="overlay__content">
         <img
-            src="img/exit.svg"
+            src="{{asset('img/exit.svg')}}"
             alt="exit"
             class="exit"
             onclick="offEventAgenda()"
@@ -425,7 +405,7 @@
 <div class="overlay" id="speakers-profiles" >
     <div class="overlay__content">
         <img
-            src="img/exit.svg"
+            src="{{asset('img/exit.svg')}}"
             alt="exit"
             class="exit"
             onclick="offSpeakersProfile()"
