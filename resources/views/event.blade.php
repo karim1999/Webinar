@@ -15,6 +15,9 @@
     <script src="{{asset("js/main.js")}}" defer></script>
 </head>
 <body>
+<style>
+    [v-cloak] { display: none; }
+</style>
 <div class="top-bar">
     <img src="{{$setting->getFirstMediaUrl('logo')}}" alt="logo" style="height: 30px; width: 250px" class="top-bar__logo" />
 </div>
@@ -33,7 +36,7 @@
         <div class="chat-window__title-box">
             <h1 class="chat-window__title">Chat Window</h1>
         </div>
-        <div class="chat-window__comments-box" id="chat_box">
+        <div v-cloak class="chat-window__comments-box" id="chat_box">
             <div class="user-comments-box" v-for="message in messages" :key="message.id">
                 <img
                     style="width: 32px; height: 32px;"
