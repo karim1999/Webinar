@@ -25,7 +25,10 @@ Route::post('/webinar/register', 'WebinarController@register_guest')->name('webi
 Route::get('/webinar', 'WebinarController@event')->name('webinar.event')->middleware('auth:guest');
 
 Route::get('/messages', 'MessageController@index');
+Route::get('/settings', 'WebinarController@getSetting');
 Route::post('/messages', 'MessageController@store');
+Route::post('/submit_questions', 'QuestionController@submitForm');
+Route::get('/submit_polls/{id}', 'QuestionController@submit_polls');
 
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function (){
     Route::get('/', function (){

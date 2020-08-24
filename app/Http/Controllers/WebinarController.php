@@ -54,4 +54,7 @@ class WebinarController extends Controller
             "setting" => Setting::findOrFail(1),
         ]);
     }
+    public function getSetting(){
+        return Setting::findOrFail(1);
+    }
 }

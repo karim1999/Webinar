@@ -27,6 +27,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted, {
+    duration: 2000,
+    keepOnHover: true,
+    position: 'top-center',
+})
+
 // const app = new Vue({
 //     el: '#app',
 // });

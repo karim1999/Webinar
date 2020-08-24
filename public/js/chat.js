@@ -110,24 +110,31 @@ var chat = new Vue({
     loadData: function loadData() {
       var _this2 = this;
 
-      axios.get('/messages').then(function (res) {
+      return axios.get('/messages').then(function (res) {
         if (_this2.messages.length != res.data.length) {
           _this2.messages = res.data;
-          var elem = document.getElementById('chat_box');
-          elem.scrollTop = elem.scrollHeight;
+          setTimeout(function () {
+            _this2.scrollBottom();
+          }, 1000);
         }
       });
     },
     addMessage: function addMessage() {
       var _this3 = this;
 
-      axios.post('/messages', {
+      return axios.post('/messages', {
         message: this.message,
         guest_id: this.$refs.guest_id.value
       }).then(function (res) {
         _this3.message = "";
-        console.log(res.data);
+        _this3.messages = res.data;
+
+        _this3.scrollBottom();
       });
+    },
+    scrollBottom: function scrollBottom() {
+      var elem = document.getElementById('chat_box');
+      elem.scrollTop = elem.scrollHeight;
     }
   }
 });

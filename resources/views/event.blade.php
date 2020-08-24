@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webinar | Event Page</title>
+    <title>{{$setting->title}} | Event Page</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset("css/main.css")}}" />
     <link
@@ -64,7 +64,7 @@
     </div>
 </main>
 <footer>
-    <div class="footer-icon-box" onclick="onResourcesList()">
+    <div class="footer-icon-box" id="resources_button" onclick="onResourcesList()">
         <img
             src="{{asset('img/icon-1.svg')}}"
             alt="resources-list"
@@ -73,7 +73,7 @@
         />
         <span class="icon-title" id="resources">Resources List</span>
     </div>
-    <div class="footer-icon-box" onclick="onPolling()">
+    <div class="footer-icon-box" id="poll_button" onclick="onPolling()">
         <img
             src="{{asset('img/icon-2.svg')}}"
             alt="resources-list"
@@ -82,7 +82,7 @@
         />
         <span class="icon-title" id="polling-title">Polling</span>
     </div>
-    <div class="footer-icon-box" onclick="onQA()">
+    <div class="footer-icon-box" id="question_button" onclick="onQA()">
         <img
             src="{{asset('img/icon-3.svg')}}"
             alt="resources-list"
@@ -91,15 +91,15 @@
         />
         <span class="icon-title" id="QA-title">Q&As</span>
     </div>
-    <div class="footer-icon-box" onclick="onSocialFeed()">
-        <img
-            src="{{asset('img/icon-4.svg')}}"
-            alt="resources-list"
-            class="footer-icon"
-            id="social-feed-icon"
-        />
-        <span class="icon-title" id="social-feed-title">Social Feed</span>
-    </div>
+{{--    <div class="footer-icon-box" id="social_button" onclick="onSocialFeed()">--}}
+{{--        <img--}}
+{{--            src="{{asset('img/icon-4.svg')}}"--}}
+{{--            alt="resources-list"--}}
+{{--            class="footer-icon"--}}
+{{--            id="social-feed-icon"--}}
+{{--        />--}}
+{{--        <span class="icon-title" id="social-feed-title">Social Feed</span>--}}
+{{--    </div>--}}
     <div class="footer-icon-box" onclick="onEventAgenda()">
         <img
             src="{{asset('img/icon-5.svg')}}"
@@ -109,79 +109,88 @@
         />
         <span class="icon-title" id="even-agena-title">Event Agenda</span>
     </div>
-    <div class="footer-icon-box" onclick="onSpeakersProfile()">
+    <div class="footer-icon-box" id="speaker_button" onclick="onSpeakersProfile()">
         <img src="{{asset('img/icon-6.svg')}}" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
         <span class="icon-title" id="speakers-profile-title">Speakers Profile</span>
     </div>
 </footer>
-<div class="overlay" id="resources-list">
-    <div class="overlay__content">
-        <img
-            src="{{asset('img/exit.svg')}}"
-            alt="exit"
-            class="exit"
-            onclick="offResourcesList()"
-        />
-        <div class="header">
-            <h1 class="overlay__content-header">Resources List</h1>
-            <div class="header__icons">
-                <img src="{{asset('img/thumbnail.svg')}}" alt="thumbnail" class="thumbnail" />
-                <img src="{{asset('img/list-view.svg')}}" alt="list-view" class="listview" />
+<div id="tabs_container">
+    <div class="overlay" id="resources-list">
+        <div class="overlay__content">
+            <img
+                src="{{asset('img/exit.svg')}}"
+                alt="exit"
+                class="exit"
+                onclick="offResourcesList()"
+            />
+            <div class="header">
+                <h1 class="overlay__content-header">Resources List</h1>
+                <div class="header__icons">
+                    <img src="{{asset('img/thumbnail.svg')}}" alt="thumbnail" class="thumbnail" />
+                    <img src="{{asset('img/list-view.svg')}}" alt="list-view" class="listview" />
+                </div>
+            </div>
+            <hr />
+            <div class="resources-list">
+                @foreach($resources as $resource)
+                    <div class="resources-list-card">
+                        <div class="card-icons-box">
+                            <img src="{{asset('img/eye.svg')}}" alt="eye" class="card-icon" />
+                            <a href="{{$resource->getFirstMediaUrl('file')}}" target="_blank">
+                                <img src="{{asset('img/download.svg')}}" alt="download" class="card-icon" />
+                            </a>
+                        </div>
+                        <img src="{{asset('img/pdf.svg')}}" alt="pdf" class="pdf-icon" />
+                        <p class="card-text">{{$resource->name}}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
-        <hr />
-        <div class="resources-list">
-            @foreach($resources as $resource)
-                <div class="resources-list-card">
-                    <div class="card-icons-box">
-                        <img src="{{asset('img/eye.svg')}}" alt="eye" class="card-icon" />
-                        <a href="{{$resource->getFirstMediaUrl('file')}}" target="_blank">
-                            <img src="{{asset('img/download.svg')}}" alt="download" class="card-icon" />
-                        </a>
-                    </div>
-                    <img src="{{asset('img/pdf.svg')}}" alt="pdf" class="pdf-icon" />
-                    <p class="card-text">{{$resource->name}}</p>
+    </div>
+    <div class="overlay" id="polling">
+        <div class="overlay__content">
+            <loading :active.sync="isPolling"
+                     :can-cancel="false"
+                     :is-full-page="false"></loading>
+            <img
+                src="{{asset('img/exit.svg')}}"
+                alt="exit"
+                class="exit"
+                onclick="offPolling()"
+            />
+            <div class="header">
+                <h1 class="overlay__content-header">Polling</h1>
+            </div>
+            <hr />
+            <h1 v-if="polled" class="polling-question">Thanks for answering the questions.</h1>
+            @foreach($polls as $poll)
+                <div class="polling-content">
+                    <h1 class="polling-question">
+                        {{$poll->question}}
+                    </h1>
+                    <div class="sm-hr"></div>
+                    @foreach($poll->options as $option)
+                        <div @click="submitPolls('{{$option->id}}')" ref="poll_{{$option->id}}" class="polling-answer">
+                            <p class="polling-answer__text">{{$option->option}}</p>
+                        </div>
+                    @endforeach
                 </div>
             @endforeach
         </div>
     </div>
-</div>
-<div class="overlay" id="polling">
-    <div class="overlay__content">
-        <img
-            src="{{asset('img/exit.svg')}}"
-            alt="exit"
-            class="exit"
-            onclick="offPolling()"
-        />
-        <div class="header">
-            <h1 class="overlay__content-header">Polling</h1>
-        </div>
-        <hr />
-        @foreach($polls as $poll)
-            <div class="polling-content">
-                <h1 class="polling-question">
-                    {{$poll->question}}
-                </h1>
-                <div class="sm-hr"></div>
-                @foreach($poll->options as $option)
-                <div class="polling-answer">
-                    <p class="polling-answer__text">{{$option->option}}</p>
-                </div>
-                @endforeach
+    <div class="overlay" id="QA">
+        <div class="overlay__content">
+            <loading :active.sync="isAnswering"
+                     :can-cancel="false"
+                     :is-full-page="false"></loading>
+            <img src="{{asset('img/exit.svg')}}" alt="exit" class="exit" onclick="offQA()" />
+            <div class="header">
+                <h1 class="overlay__content-header">Questions and Answers</h1>
             </div>
-        @endforeach
-    </div>
-</div>
-<div class="overlay" id="QA">
-    <div class="overlay__content">
-        <img src="{{asset('img/exit.svg')}}" alt="exit" class="exit" onclick="offQA()" />
-        <div class="header">
-            <h1 class="overlay__content-header">Questions and Answers</h1>
-        </div>
-        <hr />
+            <hr />
             <div class="questions">
-                <form action="#" class="adding-question">
+                <h1 v-if="answered" class="polling-question">Thanks for answering the questions.</h1>
+                <form v-else action="#" v-on:submit.prevent="submitQuestions" class="adding-question">
                     @foreach($questions as $question)
                         <h1 class="polling-question">
                             {{$question->question}}
@@ -191,6 +200,7 @@
                             name="question_{{$question->id}}"
                             id="question"
                             cols="30"
+                            v-model="questions['question_{{$question->id}}']"
                             rows="10"
                             class="question-text"
                             placeholder="Type your answer here"
@@ -199,166 +209,168 @@
                     <button class="submit-btn">Submit</button>
                 </form>
             </div>
-    </div>
-</div>
-<div class="overlay" id="social-feed">
-    <div class="overlay__content">
-        <img
-            src="{{asset('img/exit.svg')}}"
-            alt="exit"
-            class="exit"
-            onclick="offSocialFeed()"
-        />
-        <div class="header">
-            <h1 class="overlay__content-header">Social Feed</h1>
-        </div>
-        <hr />
-        <div class="types-social-media">
-            <span class="all-types">All</span>
-            <img src="{{asset('img/twttier.svg')}}" alt="twttier" class="social-icon" />
-            <img src="{{asset('img/facebook.svg')}}" alt="facebook" class="social-icon" />
-            <img src="{{asset('img/instgram.svg')}}" alt="instgram." class="social-icon" />
-        </div>
-        <div class="social-feed">
-            <div class="social-feed__card twitter-card">
-                <img
-                    src="{{asset('img/twitter (2).svg')}}"
-                    alt="twitter"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-                <span class="tweet-author">@alsayegh</span>
-            </div>
-            <div class="social-feed__card facebook-inst-card">
-                <img
-                    src="{{asset('img/facebook (1).svg')}}"
-                    alt="facebook"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info facebook-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-            </div>
-            <div class="social-feed__card twitter-card">
-                <img
-                    src="{{asset('img/twitter (2).svg')}}"
-                    alt="twitter"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-                <span class="tweet-author">@alsayegh</span>
-            </div>
-            <div class="social-feed__card facebook-inst-card">
-                <img
-                    src="{{asset('img/facebook (1).svg')}}"
-                    alt="facebook"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info facebook-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-            </div>
-            <div class="social-feed__card twitter-card">
-                <img
-                    src="{{asset('img/twitter (2).svg')}}"
-                    alt="twitter"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-                <span class="tweet-author">@alsayegh</span>
-            </div>
-            <div class="social-feed__card facebook-inst-card">
-                <img
-                    src="{{asset('img/facebook (1).svg')}}"
-                    alt="facebook"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info facebook-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-            </div>
-            <div class="social-feed__card facebook-inst-card">
-                <img
-                    src="{{asset('img/facebook (1).svg')}}"
-                    alt="facebook"
-                    class="social-feed__card-icon"
-                />
-                <p class="feed-info facebook-text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, beatae.
-                </p>
-            </div>
         </div>
     </div>
-</div>
-<div class="overlay" id="event-agenda">
-    <div class="overlay__content">
-        <img
-            src="{{asset('img/exit.svg')}}"
-            alt="exit"
-            class="exit"
-            onclick="offEventAgenda()"
-        />
-        <div class="header">
-            <h1 class="overlay__content-header">Event Agenda</h1>
+{{--    <div class="overlay" id="social-feed">--}}
+{{--        <div class="overlay__content">--}}
+{{--            <img--}}
+{{--                src="{{asset('img/exit.svg')}}"--}}
+{{--                alt="exit"--}}
+{{--                class="exit"--}}
+{{--                onclick="offSocialFeed()"--}}
+{{--            />--}}
+{{--            <div class="header">--}}
+{{--                <h1 class="overlay__content-header">Social Feed</h1>--}}
+{{--            </div>--}}
+{{--            <hr />--}}
+{{--            <div class="types-social-media">--}}
+{{--                <span class="all-types">All</span>--}}
+{{--                <img src="{{asset('img/twttier.svg')}}" alt="twttier" class="social-icon" />--}}
+{{--                <img src="{{asset('img/facebook.svg')}}" alt="facebook" class="social-icon" />--}}
+{{--                <img src="{{asset('img/instgram.svg')}}" alt="instgram." class="social-icon" />--}}
+{{--            </div>--}}
+{{--            <div class="social-feed">--}}
+{{--                <div class="social-feed__card twitter-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/twitter (2).svg')}}"--}}
+{{--                        alt="twitter"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                    <span class="tweet-author">@alsayegh</span>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card facebook-inst-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/facebook (1).svg')}}"--}}
+{{--                        alt="facebook"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info facebook-text">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card twitter-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/twitter (2).svg')}}"--}}
+{{--                        alt="twitter"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                    <span class="tweet-author">@alsayegh</span>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card facebook-inst-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/facebook (1).svg')}}"--}}
+{{--                        alt="facebook"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info facebook-text">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card twitter-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/twitter (2).svg')}}"--}}
+{{--                        alt="twitter"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                    <span class="tweet-author">@alsayegh</span>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card facebook-inst-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/facebook (1).svg')}}"--}}
+{{--                        alt="facebook"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info facebook-text">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="social-feed__card facebook-inst-card">--}}
+{{--                    <img--}}
+{{--                        src="{{asset('img/facebook (1).svg')}}"--}}
+{{--                        alt="facebook"--}}
+{{--                        class="social-feed__card-icon"--}}
+{{--                    />--}}
+{{--                    <p class="feed-info facebook-text">--}}
+{{--                        Lorem ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                        Veritatis, beatae.--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+    <div class="overlay" id="event-agenda">
+        <div class="overlay__content">
+            <img
+                src="{{asset('img/exit.svg')}}"
+                alt="exit"
+                class="exit"
+                onclick="offEventAgenda()"
+            />
+            <div class="header">
+                <h1 class="overlay__content-header">Event Agenda</h1>
+            </div>
+            <hr />
+            <ul class="agenda-list">
+                @foreach($events as $event)
+                    <li class="agenda-list-item">
+                        <div class="from-to-time">
+                            <p class="from">{{$event->from}}</p>
+                            <hr />
+                            <p class="to">{{$event->to}}</p>
+                        </div>
+                        <div class="appointment-info">
+                            <h1 class="appointment-title">{{$event->title}}</h1>
+                            <p class="appointment-summary">
+                                {{$event->description}}
+                            </p>
+                        </div>
+                    </li>
+                    <hr class="agenda-hr">
+                @endforeach
+            </ul>
         </div>
-        <hr />
-        <ul class="agenda-list">
-            @foreach($events as $event)
-                <li class="agenda-list-item">
-                    <div class="from-to-time">
-                        <p class="from">{{$event->from}}</p>
-                        <hr />
-                        <p class="to">{{$event->to}}</p>
+    </div>
+    <div class="overlay" id="speakers-profiles" >
+        <div class="overlay__content">
+            <img
+                src="{{asset('img/exit.svg')}}"
+                alt="exit"
+                class="exit"
+                onclick="offSpeakersProfile()"
+            />
+            <div class="header">
+                <h1 class="overlay__content-header">Speakers Profiles</h1>
+            </div>
+            <hr />
+            <div class="speakers-profile-section">
+                @foreach($speakers as $speaker)
+                    <div class="speaker-profile-card">
+                        <img src="{{$speaker->getFirstMediaUrl('image')}}" style="width: 160px; height: 160px; border-radius: 100%" alt="prof" class="prof-pic">
+                        <h1 class="speaker-name">{{$speaker->name}}</h1>
+                        <p class="bio-summary">{{$speaker->description}}</p>
                     </div>
-                    <div class="appointment-info">
-                        <h1 class="appointment-title">{{$event->title}}</h1>
-                        <p class="appointment-summary">
-                            {{$event->description}}
-                        </p>
-                    </div>
-                </li>
-                <hr class="agenda-hr">
-            @endforeach
-        </ul>
-    </div>
-</div>
-<div class="overlay" id="speakers-profiles" >
-    <div class="overlay__content">
-        <img
-            src="{{asset('img/exit.svg')}}"
-            alt="exit"
-            class="exit"
-            onclick="offSpeakersProfile()"
-        />
-        <div class="header">
-            <h1 class="overlay__content-header">Speakers Profiles</h1>
-        </div>
-        <hr />
-        <div class="speakers-profile-section">
-            @foreach($speakers as $speaker)
-                <div class="speaker-profile-card">
-                    <img src="{{$speaker->getFirstMediaUrl('image')}}" style="width: 160px; height: 160px; border-radius: 100%" alt="prof" class="prof-pic">
-                    <h1 class="speaker-name">{{$speaker->name}}</h1>
-                    <p class="bio-summary">{{$speaker->description}}</p>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
 <script src="{{asset("js/app.js")}}" defer></script>
 <script src="{{asset("js/chat.js")}}" defer></script>
+<script src="{{asset("js/tabs.js")}}" defer></script>
 </body>
 </html>

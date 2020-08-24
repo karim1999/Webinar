@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webinar | Sign up Form</title>
+    <title>{{$setting->title}} | Sign up Form</title>
     <link rel="stylesheet" href="{{asset("css/main.css")}}" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
@@ -18,7 +18,7 @@
         <h1 class="webinar-title" style="text-align: center;">
 {{--            <span>Virtual</span> <br> Event <br> 2020--}}
             <span>
-            {{$setting->title}}
+            {!! $setting->title !!}
             </span>
         </h1>
     </div>

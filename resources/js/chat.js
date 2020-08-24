@@ -11,22 +11,28 @@ const chat = new Vue({
     },
     methods: {
         loadData(){
-            axios.get('/messages').then(res => {
+            return axios.get('/messages').then(res => {
                 if(this.messages.length != res.data.length){
                     this.messages= res.data
-                    let elem= document.getElementById('chat_box');
-                    elem.scrollTop = elem.scrollHeight;
+                    setTimeout(()=> {
+                        this.scrollBottom()
+                    }, 1000)
                 }
             })
         },
         addMessage(){
-            axios.post('/messages', {
+            return axios.post('/messages', {
                 message: this.message,
                 guest_id: this.$refs.guest_id.value
             }).then(res => {
                 this.message= ""
-                console.log(res.data)
+                this.messages= res.data
+                this.scrollBottom()
             })
+        },
+        scrollBottom(){
+            let elem= document.getElementById('chat_box');
+            elem.scrollTop = elem.scrollHeight;
         }
     }
 });

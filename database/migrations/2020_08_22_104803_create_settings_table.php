@@ -19,6 +19,10 @@ class CreateSettingsTable extends Migration
             $table->string('gradient_to')->default("#4D4D4D");
             $table->string('title')->default("Virtual Event 2020");
             $table->string('link')->default("https://www.youtube.com/embed/Z4vD9ppAQhw");
+            $table->string('description')->nullable();
+            $table->boolean('poll_tab')->default(0);
+            $table->boolean('question_tab')->default(0);
+            $table->string('keywords')->default("event");
             $table->timestamps();
         });
     }
