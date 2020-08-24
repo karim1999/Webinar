@@ -8,6 +8,7 @@ use App\Poll;
 use App\Question;
 use App\Resource;
 use App\Setting;
+use App\Speaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,13 +39,14 @@ class WebinarController extends Controller
         $guest->department= $request->post('department');
         $guest->city= $request->post('city');
         $guest->save();
-        Auth::loginUsingID($guest->id,true);
-
+        Auth::guard('guest')->login($guest,false);
+        return redirect()->route('webinar.event');
     }
 
     public function event(){
         return view('event', [
             "resources" => Resource::all(),
+            "speakers" => Speaker::all(),
             "guests" => Guest::all(),
             "questions" => Question::all(),
             "polls" => Poll::all(),

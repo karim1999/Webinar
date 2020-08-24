@@ -14,15 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect()->route('webinar.register');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/webinar/register', 'WebinarController@register')->name('webinar.register');
+Route::get('/webinar/register', 'WebinarController@register')->name('webinar.register')->middleware('guest:guest');
 Route::post('/webinar/register', 'WebinarController@register_guest')->name('webinar.register');
-Route::get('/webinar', 'WebinarController@event')->name('webinar.event');
+Route::get('/webinar', 'WebinarController@event')->name('webinar.event')->middleware('auth:guest');
+
+Route::get('/messages', 'MessageController@index');
+Route::post('/messages', 'MessageController@store');
 
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function (){
     Route::get('/', function (){

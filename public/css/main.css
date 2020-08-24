@@ -650,7 +650,8 @@ main .chat-window__title {
 }
 
 main .chat-window__comments-box {
-  min-height: 73rem;
+  height: 73rem;
+  overflow-y: scroll;
   padding: 3rem;
   display: flex;
   flex-direction: column;

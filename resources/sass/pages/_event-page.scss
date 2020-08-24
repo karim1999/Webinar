@@ -38,7 +38,8 @@ main {
             margin-left: 2rem;
         }
         &__comments-box {
-            min-height: 73rem;
+            height: 73rem;
+            overflow-y: scroll;
             // background-color: rebeccapurple;
             padding: 3rem;
             display: flex;

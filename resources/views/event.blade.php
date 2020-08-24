@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webinar | Event Page</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset("css/main.css")}}" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
@@ -20,83 +21,43 @@
         <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/Z4vD9ppAQhw"
+            src="{{$setting->link}}"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
         ></iframe>
     </div>
-    <div class="chat-window">
+    <div class="chat-window" id="chat">
         <div class="chat-window__title-box">
             <h1 class="chat-window__title">Chat Window</h1>
         </div>
-        <div class="chat-window__comments-box">
-            <div class="user-comments-box">
+        <div class="chat-window__comments-box" id="chat_box">
+            <div class="user-comments-box" v-for="message in messages" :key="message.id">
                 <img
+                    style="width: 32px; height: 32px;"
                     src="{{asset('img/profile-pic.png')}}"
                     alt="profile-pic"
                     class="user-comments-box__profile-pic"
                 />
                 <div class="user-comments-box__content">
-                    <h2 class="user-name">Anwar Osman</h2>
+                    <h2 class="user-name">@{{ message.guest.first_name }} @{{ message.guest.last_name }}</h2>
                     <p class="user-comment">
-                        Proin eget volutpat ante, quis tempor eros. Duis fermentum, est
-                        eget elementum porta, nisi ipsum gravida velit
+                        @{{ message.message }}
                     </p>
                 </div>
             </div>
-            <div class="user-comments-box">
-                <img
-                    src="{{asset('img/profile-pic.png')}}"
-                    alt="profile-pic"
-                    class="user-comments-box__profile-pic"
-                />
-                <div class="user-comments-box__content">
-                    <h2 class="user-name">Anwar Osman</h2>
-                    <p class="user-comment">
-                        Proin eget volutpat ante, quis tempor eros. Duis fermentum, est
-                        eget elementum porta, nisi ipsum gravida velit
-                    </p>
-                </div>
-            </div>
-            <div class="user-comments-box">
-                <img
-                    src="{{asset('img/profile-pic.png')}}"
-                    alt="profile-pic"
-                    class="user-comments-box__profile-pic"
-                />
-                <div class="user-comments-box__content">
-                    <h2 class="user-name">Anwar Osman</h2>
-                    <p class="user-comment">
-                        Proin eget volutpat ante, quis tempor eros. Duis fermentum, est
-                        eget elementum porta, nisi ipsum gravida velit
-                    </p>
-                </div>
-            </div>
-            <div class="user-comments-box">
-                <img
-                    src="{{asset('img/profile-pic.png')}}"
-                    alt="profile-pic"
-                    class="user-comments-box__profile-pic"
-                />
-                <div class="user-comments-box__content">
-                    <h2 class="user-name">Anwar Osman</h2>
-                    <p class="user-comment">
-                        Proin eget volutpat ante, quis tempor eros. Duis fermentum, est
-                        eget elementum porta, nisi ipsum gravida velit
-                    </p>
-                </div>
-            </div>
-            <form action="#" class="add-comment">
+            <form action="#" v-on:submit.prevent="addMessage" class="add-comment">
                 <input
                     type="text"
+                    v-model="message"
                     name="add-comment"
                     id="add-comment"
                     class="add-comment__input"
                     placeholder="Type your message here"
                 />
+                <input ref="guest_id" type="hidden" style="display: none" value="{{auth()->user()->id}}">
                 <button type="submit" class="add-comment__btn">
-                    <img src="img/send.png" alt="send-button" />
+                    <img src="{{asset('img/send.png')}}" alt="send-button" />
                 </button>
             </form>
         </div>
@@ -219,25 +180,25 @@
             <h1 class="overlay__content-header">Questions and Answers</h1>
         </div>
         <hr />
-        @foreach($questions as $question)
             <div class="questions">
-                <h1 class="polling-question">
-                    {{$question->question}}
-                </h1>
-                <div class="sm-hr"></div>
                 <form action="#" class="adding-question">
-                <textarea
-                    name="question_{{$question->id}}"
-                    id="question"
-                    cols="30"
-                    rows="10"
-                    class="question-text"
-                    placeholder="Type your answer here"
-                ></textarea>
+                    @foreach($questions as $question)
+                        <h1 class="polling-question">
+                            {{$question->question}}
+                        </h1>
+                        <div class="sm-hr"></div>
+                        <textarea
+                            name="question_{{$question->id}}"
+                            id="question"
+                            cols="30"
+                            rows="10"
+                            class="question-text"
+                            placeholder="Type your answer here"
+                        ></textarea>
+                    @endforeach
                     <button class="submit-btn">Submit</button>
                 </form>
             </div>
-        @endforeach
     </div>
 </div>
 <div class="overlay" id="social-feed">
@@ -255,13 +216,13 @@
         <div class="types-social-media">
             <span class="all-types">All</span>
             <img src="{{asset('img/twttier.svg')}}" alt="twttier" class="social-icon" />
-            <img src="img/facebook.svg" alt="facebook" class="social-icon" />
-            <img src="img/instgram.svg" alt="instgram." class="social-icon" />
+            <img src="{{asset('img/facebook.svg')}}" alt="facebook" class="social-icon" />
+            <img src="{{asset('img/instgram.svg')}}" alt="instgram." class="social-icon" />
         </div>
         <div class="social-feed">
             <div class="social-feed__card twitter-card">
                 <img
-                    src="img/twitter (2).svg"
+                    src="{{asset('img/twitter (2).svg')}}"
                     alt="twitter"
                     class="social-feed__card-icon"
                 />
@@ -273,7 +234,7 @@
             </div>
             <div class="social-feed__card facebook-inst-card">
                 <img
-                    src="img/facebook (1).svg"
+                    src="{{asset('img/facebook (1).svg')}}"
                     alt="facebook"
                     class="social-feed__card-icon"
                 />
@@ -284,7 +245,7 @@
             </div>
             <div class="social-feed__card twitter-card">
                 <img
-                    src="img/twitter (2).svg"
+                    src="{{asset('img/twitter (2).svg')}}"
                     alt="twitter"
                     class="social-feed__card-icon"
                 />
@@ -296,7 +257,7 @@
             </div>
             <div class="social-feed__card facebook-inst-card">
                 <img
-                    src="img/facebook (1).svg"
+                    src="{{asset('img/facebook (1).svg')}}"
                     alt="facebook"
                     class="social-feed__card-icon"
                 />
@@ -307,7 +268,7 @@
             </div>
             <div class="social-feed__card twitter-card">
                 <img
-                    src="img/twitter (2).svg"
+                    src="{{asset('img/twitter (2).svg')}}"
                     alt="twitter"
                     class="social-feed__card-icon"
                 />
@@ -319,7 +280,7 @@
             </div>
             <div class="social-feed__card facebook-inst-card">
                 <img
-                    src="img/facebook (1).svg"
+                    src="{{asset('img/facebook (1).svg')}}"
                     alt="facebook"
                     class="social-feed__card-icon"
                 />
@@ -330,7 +291,7 @@
             </div>
             <div class="social-feed__card facebook-inst-card">
                 <img
-                    src="img/facebook (1).svg"
+                    src="{{asset('img/facebook (1).svg')}}"
                     alt="facebook"
                     class="social-feed__card-icon"
                 />
@@ -355,50 +316,22 @@
         </div>
         <hr />
         <ul class="agenda-list">
-            <li class="agenda-list-item">
-                <div class="from-to-time">
-                    <p class="from">20:30</p>
-                    <hr />
-                    <p class="to">21:30</p>
-                </div>
-                <div class="appointment-info">
-                    <h1 class="appointment-title">Duis Sagittis Nisi Aliquet</h1>
-                    <p class="appointment-summary">
-                        Intro: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Proin eu maximus odio, vitae
-                    </p>
-                </div>
-            </li>
-            <hr class="agenda-hr">
-            <li class="agenda-list-item">
-                <div class="from-to-time">
-                    <p class="from">20:30</p>
-                    <hr />
-                    <p class="to">21:30</p>
-                </div>
-                <div class="appointment-info">
-                    <h1 class="appointment-title">Duis Sagittis Nisi Aliquet</h1>
-                    <p class="appointment-summary">
-                        Intro: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Proin eu maximus odio, vitae
-                    </p>
-                </div>
-            </li>
-            <hr class="agenda-hr">
-            <li class="agenda-list-item">
-                <div class="from-to-time">
-                    <p class="from">20:30</p>
-                    <hr />
-                    <p class="to">21:30</p>
-                </div>
-                <div class="appointment-info">
-                    <h1 class="appointment-title">Duis Sagittis Nisi Aliquet</h1>
-                    <p class="appointment-summary">
-                        Intro: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Proin eu maximus odio, vitae
-                    </p>
-                </div>
-            </li>
+            @foreach($events as $event)
+                <li class="agenda-list-item">
+                    <div class="from-to-time">
+                        <p class="from">{{$event->from}}</p>
+                        <hr />
+                        <p class="to">{{$event->to}}</p>
+                    </div>
+                    <div class="appointment-info">
+                        <h1 class="appointment-title">{{$event->title}}</h1>
+                        <p class="appointment-summary">
+                            {{$event->description}}
+                        </p>
+                    </div>
+                </li>
+                <hr class="agenda-hr">
+            @endforeach
         </ul>
     </div>
 </div>
@@ -415,28 +348,17 @@
         </div>
         <hr />
         <div class="speakers-profile-section">
-            <div class="speaker-profile-card">
-                <img src="{{asset("img/speaker-prof-pic.png")}}" alt="prof" class="prof-pic">
-                <h1 class="speaker-name">Mostafa Saad</h1>
-                <p class="bio-summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores qui odio tenetur numquam! Eum vitae laborum illo iure ullam nisi! Lorem ipsum dolor sit amet consectetur adipisicing elit. In accusantium consequatur laborum, officia expedita modi.</p>
-            </div>
-            <div class="speaker-profile-card">
-                <img src="{{asset("img/speaker-prof-pic.png")}}" alt="prof" class="prof-pic">
-                <h1 class="speaker-name">Mostafa Saad</h1>
-                <p class="bio-summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores qui odio tenetur numquam! Eum vitae laborum illo iure ullam nisi! Lorem ipsum dolor sit amet consectetur adipisicing elit. In accusantium consequatur laborum, officia expedita modi.</p>
-            </div>
-            <div class="speaker-profile-card">
-                <img src="{{asset("img/speaker-prof-pic.png")}}" alt="prof" class="prof-pic">
-                <h1 class="speaker-name">Mostafa Saad</h1>
-                <p class="bio-summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores qui odio tenetur numquam! Eum vitae laborum illo iure ullam nisi! Lorem ipsum dolor sit amet consectetur adipisicing elit. In accusantium consequatur laborum, officia expedita modi.</p>
-            </div>
-            <div class="speaker-profile-card">
-                <img src="{{asset("img/speaker-prof-pic.png")}}" alt="prof" class="prof-pic">
-                <h1 class="speaker-name">Mostafa Saad</h1>
-                <p class="bio-summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores qui odio tenetur numquam! Eum vitae laborum illo iure ullam nisi! Lorem ipsum dolor sit amet consectetur adipisicing elit. In accusantium consequatur laborum, officia expedita modi.</p>
-            </div>
+            @foreach($speakers as $speaker)
+                <div class="speaker-profile-card">
+                    <img src="{{$speaker->getFirstMediaUrl('image')}}" style="width: 160px; height: 160px; border-radius: 100%" alt="prof" class="prof-pic">
+                    <h1 class="speaker-name">{{$speaker->name}}</h1>
+                    <p class="bio-summary">{{$speaker->description}}</p>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>
+<script src="{{asset("js/app.js")}}" defer></script>
+<script src="{{asset("js/chat.js")}}" defer></script>
 </body>
 </html>
