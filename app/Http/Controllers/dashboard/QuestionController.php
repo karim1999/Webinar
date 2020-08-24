@@ -6,6 +6,7 @@ use App\Exports\GuestExport;
 use App\Exports\QuestionExport;
 use App\Http\Controllers\Controller;
 use App\Question;
+use App\Setting;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -24,7 +25,8 @@ class QuestionController extends Controller
     {
         //
         return view('dashboard.question.index', [
-            "questions" => Question::all()
+            "questions" => Question::all(),
+            "setting"=> Setting::findOrFail(1)
         ]);
     }
 

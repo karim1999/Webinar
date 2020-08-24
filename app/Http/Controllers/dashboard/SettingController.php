@@ -113,6 +113,18 @@ class SettingController extends Controller
     {
         //
     }
+    public function open_question(){
+        $setting= Setting::findOrFail(1);
+        $setting->question_tab= $setting->question_tab ? 0 : 1;
+        $setting->save();
+        return redirect()->back()->with("status", "The questions tab was opened successfully.");
+    }
+    public function open_poll(){
+        $setting= Setting::findOrFail(1);
+        $setting->poll_tab= $setting->poll_tab ? 0 : 1;
+        $setting->save();
+        return redirect()->back()->with("status", "The polls tab was opened successfully.");
+    }
     public function reset(){
         Artisan::call('migrate:fresh --seed');
         return redirect()->back()->with("status", "The application was reset successfully.");

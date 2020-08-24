@@ -51,4 +51,6 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::get('/speaker/export', 'dashboard\SpeakerController@export')->name('speaker.export');
     Route::get('/event/export', 'dashboard\EventController@export')->name('event.export');
     Route::get('/reset', 'dashboard\SettingController@reset')->name('setting.reset');
+    Route::get('/open_poll', 'dashboard\SettingController@open_poll')->name('setting.open_poll');
+    Route::get('/open_question', 'dashboard\SettingController@open_question')->name('setting.open_question');
 });

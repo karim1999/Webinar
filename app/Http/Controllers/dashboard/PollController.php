@@ -7,6 +7,7 @@ use App\Exports\PollExport;
 use App\Http\Controllers\Controller;
 use App\Option;
 use App\Poll;
+use App\Setting;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -25,7 +26,8 @@ class PollController extends Controller
     {
         //
         return view('dashboard.poll.index', [
-            "polls" => Poll::all()
+            "polls" => Poll::all(),
+            "setting"=> Setting::findOrFail(1)
         ]);
     }
 

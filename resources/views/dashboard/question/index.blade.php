@@ -14,11 +14,21 @@
                 <h3 class="card-label">Questions</h3>
             </div>
             <div class="card-toolbar">
+                @if($setting->question_tab)
+                    <a href="{{route('dashboard.setting.open_question')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
+                        <i class="fa fa-door-closed"></i>
+                        Close Tab
+                    </a>
+                @else
+                    <a href="{{route('dashboard.setting.open_question')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
+                        <i class="fa fa-door-open"></i>
+                        Open Tab
+                    </a>
+                @endif
                 <a href="{{route('dashboard.question.export')}}" style="margin-right: 20px" target="_blank" class="btn btn-success font-weight-bolder">
                     <i class="fa fa-file-export"></i>
                     Export
                 </a>
-
                 <!--begin::Button-->
                 <a href="{{route('dashboard.question.create')}}" class="btn btn-primary font-weight-bolder">
                     <i class="la la-plus"></i>

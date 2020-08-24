@@ -14,6 +14,17 @@
                 <h3 class="card-label">Polls</h3>
             </div>
             <div class="card-toolbar">
+                @if($setting->poll_tab)
+                    <a href="{{route('dashboard.setting.open_poll')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
+                        <i class="fa fa-door-closed"></i>
+                        Close Tab
+                    </a>
+                @else
+                    <a href="{{route('dashboard.setting.open_poll')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
+                        <i class="fa fa-door-open"></i>
+                        Open Tab
+                    </a>
+                @endif
                 <a href="{{route('dashboard.poll.export')}}" style="margin-right: 20px" target="_blank" class="btn btn-success font-weight-bolder">
                     <i class="fa fa-file-export"></i>
                     Export
