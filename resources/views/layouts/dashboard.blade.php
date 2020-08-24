@@ -149,6 +149,11 @@
                                     <span class="nav-title text-uppercase">Guests</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('dashboard.message.index')}}" class="nav-link">
+                                    <span class="nav-title text-uppercase">Messages</span>
+                                </a>
+                            </li>
                             <!--end::Item-->
 
                             <!--begin::Item-->

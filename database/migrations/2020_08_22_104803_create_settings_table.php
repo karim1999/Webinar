@@ -18,11 +18,12 @@ class CreateSettingsTable extends Migration
             $table->string('gradient_from')->default("#2B2B2B");
             $table->string('gradient_to')->default("#4D4D4D");
             $table->string('title')->default("Virtual Event 2020");
+            $table->string('event_title')->default("<span>Virtual</span> <br> Event <br> 2020");
             $table->string('link')->default("https://www.youtube.com/embed/Z4vD9ppAQhw");
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->boolean('poll_tab')->default(0);
             $table->boolean('question_tab')->default(0);
-            $table->string('keywords')->default("event");
+            $table->string('keywords')->default("event, 2020, webinar");
             $table->timestamps();
         });
     }

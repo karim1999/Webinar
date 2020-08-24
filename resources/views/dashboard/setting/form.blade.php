@@ -63,6 +63,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label  class="col-2 col-form-label">Event Title</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('event_title', $setting->event_title)}}" name="event_title"/>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="example-url-input" class="col-2 col-form-label">Webinar Link</label>
                     <div class="col-10">
                         <input class="form-control" type="url" name="link" value="{{old('link', $setting->link)}}"/>
@@ -80,6 +86,18 @@
                         <input class="form-control" type="color" value="{{old('gradient_to', $setting->gradient_to)}}" name="gradient_to"/>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Keywords: </label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('keywords', $setting->keywords)}}" name="keywords"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Description: </label>
+                    <div class="col-10">
+                        <textarea class="form-control" name="description">{{old('description', $setting->description)}}</textarea>
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="row">
@@ -88,6 +106,9 @@
                     <div class="col-10">
                         <button type="submit" class="btn btn-success mr-2">Submit</button>
                         <button type="reset" class="btn btn-secondary">Cancel</button>
+                        <a href="{{route('dashboard.setting.reset')}}">
+                            <button type="button" class="btn btn-danger">Reset All</button>
+                        </a>
                     </div>
                 </div>
             </div>

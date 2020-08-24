@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\EventExport;
 use App\Http\Controllers\Controller;
 use App\Event;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -130,5 +132,9 @@ class EventController extends Controller
         //
         $event->delete();
         return back()->with("status", "The event was deleted successfully.");
+    }
+    public function export()
+    {
+        return Excel::download(new EventExport, 'schedule.xlsx');
     }
 }

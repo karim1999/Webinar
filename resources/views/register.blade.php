@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{$setting->title}} | Sign up Form</title>
+    <meta name="description" content="{{$setting->description}}">
+    <meta name="keywords" content="{{$setting->keywords}}">
     <link rel="stylesheet" href="{{asset("css/main.css")}}" />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap"
@@ -15,11 +17,9 @@
     <!-- <img src="img/Group 680.png" alt="picture" class="left-panel" /> -->
     <div class="left-panel" style="background-image: linear-gradient(to bottom, {{$setting->gradient_from}}, {{$setting->gradient_to}})">
         <img style="height: 30px; width: 250px" src="{{$setting->getFirstMediaUrl('logo')}}" alt="company logo" class="company-logo-white">
-        <h1 class="webinar-title" style="text-align: center;">
+        <h1 class="webinar-title">
 {{--            <span>Virtual</span> <br> Event <br> 2020--}}
-            <span>
-            {!! $setting->title !!}
-            </span>
+            {!! $setting->event_title !!}
         </h1>
     </div>
     <div class="right-panel">

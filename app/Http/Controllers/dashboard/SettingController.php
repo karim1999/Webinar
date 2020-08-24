@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -81,6 +82,7 @@ class SettingController extends Controller
         //
         $validatedData = $request->validate([
             'title' => 'required',
+            'event_title' => 'required',
             'link' => 'required',
             'logo' => 'image',
             'gradient_from' => 'required|starts_with:#',
@@ -91,7 +93,10 @@ class SettingController extends Controller
             $setting->addMediaFromRequest("logo")->toMediaCollection('logo');
 
         $setting->title= $request->post('title');
+        $setting->event_title= $request->post('event_title');
         $setting->link= $request->post('link');
+        $setting->description= $request->post('description');
+        $setting->keywords= $request->post('keywords');
         $setting->gradient_from= $request->post('gradient_from');
         $setting->gradient_to= $request->post('gradient_to');
         $setting->save();
@@ -107,5 +112,9 @@ class SettingController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function reset(){
+        Artisan::call('migrate:fresh --seed');
+        return redirect()->back()->with("status", "The application was reset successfully.");
     }
 }

@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\Admin;
 
-use App\Exports\EventExport;
-use App\Exports\GuestExport;
-use App\Guest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
-class GuestController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +15,6 @@ class GuestController extends Controller
     public function index()
     {
         //
-        return view('dashboard.guest.index', [
-            'guests' => Guest::all()
-        ]);
     }
 
     /**
@@ -88,9 +81,5 @@ class GuestController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function export()
-    {
-        return Excel::download(new GuestExport, 'guests.xlsx');
     }
 }

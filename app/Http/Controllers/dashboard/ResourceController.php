@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\GuestExport;
+use App\Exports\ResourceExport;
 use App\Http\Controllers\Controller;
 use App\Resource;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -127,4 +130,10 @@ class ResourceController extends Controller
         $resource->delete();
         return back()->with("status", "The resource was deleted successfully.");
     }
+
+    public function export()
+    {
+        return Excel::download(new ResourceExport, 'Resources.xlsx');
+    }
+
 }

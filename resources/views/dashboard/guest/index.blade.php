@@ -14,6 +14,10 @@
                 <h3 class="card-label">Guests</h3>
             </div>
             <div class="card-toolbar">
+                <a href="{{route('dashboard.guest.export')}}" style="margin-right: 20px" target="_blank" class="btn btn-success font-weight-bolder">
+                    <i class="fa fa-file-export"></i>
+                    Export
+                </a>
 
                 <!--begin::Button-->
 {{--                <a href="{{route('dashboard.guest.create')}}" class="btn btn-primary font-weight-bolder">--}}

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\GuestExport;
+use App\Exports\SpeakerExport;
 use App\Http\Controllers\Controller;
 use App\Speaker;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -130,5 +133,9 @@ class SpeakerController extends Controller
         //
         $speaker->delete();
         return back()->with("status", "The speaker was deleted successfully.");
+    }
+    public function export()
+    {
+        return Excel::download(new SpeakerExport, 'speakers.xlsx');
     }
 }

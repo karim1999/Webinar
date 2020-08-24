@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\GuestExport;
+use App\Exports\MessageExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MessageController extends Controller
 {
@@ -15,6 +18,7 @@ class MessageController extends Controller
     public function index()
     {
         //
+        return view('dashboard.messages.index');
     }
 
     /**
@@ -82,4 +86,9 @@ class MessageController extends Controller
     {
         //
     }
+    public function export()
+    {
+        return Excel::download(new MessageExport, 'messages.xlsx');
+    }
+
 }

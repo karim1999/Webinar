@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\GuestExport;
+use App\Exports\QuestionExport;
 use App\Http\Controllers\Controller;
 use App\Question;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -119,4 +122,9 @@ class QuestionController extends Controller
         $question->delete();
         return back()->with("status", "The question was deleted successfully.");
     }
+    public function export()
+    {
+        return Excel::download(new QuestionExport, 'questions.xlsx');
+    }
+
 }

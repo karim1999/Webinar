@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Exports\GuestExport;
+use App\Exports\PollExport;
 use App\Http\Controllers\Controller;
 use App\Option;
 use App\Poll;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileDoesNotExist;
 use Spatie\MediaLibrary\MediaCollections\Exceptions\FileIsTooBig;
 
@@ -127,5 +130,9 @@ class PollController extends Controller
         //
         $poll->delete();
         return back()->with("status", "The poll was deleted successfully.");
+    }
+    public function export()
+    {
+        return Excel::download(new PollExport, 'polls.xlsx');
     }
 }
