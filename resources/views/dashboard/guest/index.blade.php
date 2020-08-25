@@ -14,6 +14,10 @@
                 <h3 class="card-label">Guests</h3>
             </div>
             <div class="card-toolbar">
+                <a href="{{route('dashboard.guest.reset')}}" style="margin-right: 20px" class="btn btn-danger font-weight-bolder">
+                    <i class="fa fa-times"></i>
+                    Reset Guests
+                </a>
                 <a href="{{route('dashboard.guest.export')}}" style="margin-right: 20px" target="_blank" class="btn btn-success font-weight-bolder">
                     <i class="fa fa-file-export"></i>
                     Export

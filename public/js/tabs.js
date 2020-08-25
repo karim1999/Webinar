@@ -768,17 +768,60 @@ var tabs = new Vue({
     settings: {},
     questions: {},
     polls: {},
+    allQuestions: [],
+    allPolls: [],
     isAnswering: false,
     isPolling: false,
     answered: false,
-    polled: false
+    polled: false,
+    answeredQuestions: [],
+    answeredPolls: []
   },
-  created: function created() {
+  mounted: function mounted() {
     var _this = this;
 
+    this.loadData();
     setInterval(function () {
       _this.loadData();
-    }, 1000);
+    }, 2000);
+    this.getQuestionsAndPolls();
+    setInterval(function () {
+      _this.getQuestionsAndPolls();
+    }, 10000);
+  },
+  computed: {
+    current_question: function current_question() {
+      if (this.allQuestions.length === 0) return null;
+
+      if (this.settings.question_tab === 0) {
+        for (var _i = 0, _Object$keys = Object.keys(this.allQuestions); _i < _Object$keys.length; _i++) {
+          var question = _Object$keys[_i];
+          if (!this.answeredQuestions[question]) return this.allQuestions[question];
+        }
+
+        return null;
+      } else if (!this.answeredQuestions[this.settings.question_tab]) {
+        return this.allQuestions[this.settings.question_tab];
+      } else {
+        return null;
+      }
+    },
+    current_poll: function current_poll() {
+      if (this.allPolls.length === 0) return null;
+
+      if (this.settings.poll_tab === 0) {
+        for (var _i2 = 0, _Object$keys2 = Object.keys(this.allPolls); _i2 < _Object$keys2.length; _i2++) {
+          var poll = _Object$keys2[_i2];
+          if (!this.answeredPolls[poll]) return this.allPolls[poll];
+        }
+
+        return null;
+      } else if (!this.answeredPolls[this.settings.poll_tab]) {
+        return this.allPolls[this.settings.poll_tab];
+      } else {
+        return null;
+      }
+    }
   },
   methods: {
     loadData: function loadData() {
@@ -796,10 +839,35 @@ var tabs = new Vue({
         }
 
         _this2.settings = res.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getQuestionsAndPolls: function getQuestionsAndPolls() {
+      var _this3 = this;
+
+      axios.get('/all_q_p').then(function (res) {
+        if (res.data.polls.length !== _this3.allPolls.length) {
+          _this3.allPolls = res.data.polls;
+        }
+
+        if (res.data.questions.length !== _this3.allQuestions.length) {
+          _this3.allQuestions = res.data.questions;
+        }
+
+        if (res.data.answers.length !== _this3.answeredQuestions.length) {
+          _this3.answeredQuestions = res.data.answers;
+        }
+
+        if (res.data.options.length !== _this3.answeredPolls.length) {
+          _this3.answeredPolls = res.data.options;
+        }
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     submitQuestions: function submitQuestions() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$toasted.show('Submitting.....');
 
@@ -808,18 +876,19 @@ var tabs = new Vue({
         axios.post('/submit_questions', this.questions).then(function (res) {
           console.log(res.data);
 
-          _this3.$toasted.success('The form was submitted successfully');
+          _this4.$toasted.success('The form was submitted successfully');
 
-          _this3.answered = true;
-          _this3.isAnswering = false;
+          _this4.answered = true;
+          _this4.answeredQuestions[_this4.current_question.id] = {};
+          _this4.isAnswering = false;
         })["catch"](function (err) {
           console.log(err);
-          _this3.isAnswering = false;
+          _this4.isAnswering = false;
         });
       }
     },
     submitPolls: function submitPolls(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       console.log(id);
       this.$toasted.show('Submitting.....');
@@ -827,15 +896,15 @@ var tabs = new Vue({
       if (!this.isPolling) {
         this.isPolling = true;
         axios.get('/submit_polls/' + id).then(function (res) {
-          _this4.$toasted.success('Your vote was recorded successfully');
+          _this5.$toasted.success('Your vote was recorded successfully'); // this.$refs["poll_"+id].parentNode.remove();
 
-          _this4.$refs["poll_" + id].parentNode.remove();
 
-          _this4.polled = true;
-          _this4.isPolling = false;
+          _this5.answeredPolls[_this5.current_poll.id] = {};
+          _this5.polled = true;
+          _this5.isPolling = false;
         })["catch"](function (err) {
           console.log(err);
-          _this4.isPolling = false;
+          _this5.isPolling = false;
         });
       }
     }

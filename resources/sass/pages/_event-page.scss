@@ -105,6 +105,7 @@ footer {
     align-items: center;
     justify-content: center;
     .footer-icon-box {
+        width: 120px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -114,7 +115,7 @@ footer {
             box-shadow: 0 0 3rem rgba($color: #000000, $alpha: 0.16);
         }
         &:hover .icon-title {
-            display: block;
+            display: block !important;
         }
         .icon-title {
             margin-top: 1rem;
@@ -128,7 +129,7 @@ footer {
         height: 5.8rem;
         border-radius: 50%;
         &:not(:last-child) {
-            margin-right: 2rem;
+            //margin-right: 2rem;
         }
     }
 }

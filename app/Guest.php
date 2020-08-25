@@ -14,4 +14,11 @@ class Guest extends Authenticatable
     public function messages(){
         return $this->hasMany("App\Message");
     }
+
+    public function answers(){
+        return $this->hasMany('App\Answer');
+    }
+    public function options(){
+        return $this->hasMany('App\GuestOption');
+    }
 }

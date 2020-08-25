@@ -14,17 +14,6 @@
                 <h3 class="card-label">Questions</h3>
             </div>
             <div class="card-toolbar">
-                @if($setting->question_tab)
-                    <a href="{{route('dashboard.setting.open_question')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
-                        <i class="fa fa-door-closed"></i>
-                        Close Tab
-                    </a>
-                @else
-                    <a href="{{route('dashboard.setting.open_question')}}" style="margin-right: 20px" class="btn btn-info font-weight-bolder">
-                        <i class="fa fa-door-open"></i>
-                        Open Tab
-                    </a>
-                @endif
                 <a href="{{route('dashboard.question.export')}}" style="margin-right: 20px" target="_blank" class="btn btn-success font-weight-bolder">
                     <i class="fa fa-file-export"></i>
                     Export
@@ -64,6 +53,15 @@
                         <td>{{$question->question}}</td>
                         <td>{{$question->created_at}}</td>
                         <td>
+                            @if($setting->question_tab == $question->id)
+                                <a href="{{route('dashboard.setting.open_question', 0)}}"  class="btn btn-info font-weight-bolder">
+                                    <i class="fa fa-door-closed"></i>
+                                </a>
+                            @else
+                                <a href="{{route('dashboard.setting.open_question', $question->id)}}" class="btn btn-info font-weight-bolder">
+                                    <i class="fa fa-door-open"></i>
+                                </a>
+                            @endif
                             <button data-toggle="modal" data-target="#answers_{{$question->id}}" class="btn btn-sm btn-icon btn-success">
                                 <i class="fa fa-tasks"></i>
                             </button>
@@ -103,6 +101,8 @@
                         <thead>
                         <tr>
                             <th>Record ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
                             <th>answer</th>
                             <th>Created At</th>
                         </tr>
@@ -112,6 +112,8 @@
                         @foreach($question->answers as $answer)
                             <tr>
                                 <td>{{$answer->id}}</td>
+                                <td>{{$answer->guest->name}}</td>
+                                <td>{{$answer->guest->email}}</td>
                                 <td>{{$answer->answer}}</td>
                                 <td>{{$answer->created_at}}</td>
                             </tr>

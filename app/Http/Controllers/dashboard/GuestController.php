@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\dashboard;
 
+use App\Answer;
 use App\Exports\EventExport;
 use App\Exports\GuestExport;
 use App\Guest;
 use App\Http\Controllers\Controller;
+use App\Message;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -92,5 +94,13 @@ class GuestController extends Controller
     public function export()
     {
         return Excel::download(new GuestExport, 'guests.xlsx');
+    }
+
+    public function reset(){
+        Answer::where('id', 'like', '%%')->delete();
+        Message::where('id', 'like', '%%')->delete();
+        Guest::where('id', 'like', '%%')->delete();
+
+        return redirect()->back()->with("status", "The guests were reset successfully.");
     }
 }

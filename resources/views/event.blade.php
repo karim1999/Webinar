@@ -120,6 +120,7 @@
     </div>
 </footer>
 <div id="tabs_container">
+    <input ref="guest_id" type="hidden" style="display: none" value="{{auth('guest')->user()->id}}">
     <div class="overlay" id="resources-list">
         <div class="overlay__content">
             <img
@@ -167,20 +168,16 @@
                 <h1 class="overlay__content-header">Polling</h1>
             </div>
             <hr />
-            <h1 v-if="polled" class="polling-question">Thanks for answering the questions.</h1>
-            @foreach($polls as $poll)
-                <div class="polling-content">
-                    <h1 class="polling-question">
-                        {{$poll->question}}
-                    </h1>
-                    <div class="sm-hr"></div>
-                    @foreach($poll->options as $option)
-                        <div @click="submitPolls('{{$option->id}}')" ref="poll_{{$option->id}}" class="polling-answer">
-                            <p class="polling-answer__text">{{$option->option}}</p>
-                        </div>
-                    @endforeach
+            <div v-if="current_poll" class="polling-content">
+                <h1 class="polling-question">
+                    @{{ current_poll.question }}
+                </h1>
+                <div class="sm-hr"></div>
+                <div v-for="option in current_poll.options" @click="submitPolls(option.id)" class="polling-answer">
+                    <p class="polling-answer__text">@{{ option.option }}</p>
                 </div>
-            @endforeach
+            </div>
+            <h1 v-else class="polling-question">Thanks for answering the questions.</h1>
         </div>
     </div>
     <div class="overlay" id="QA">
@@ -194,25 +191,23 @@
             </div>
             <hr />
             <div class="questions">
-                <h1 v-if="answered" class="polling-question">Thanks for answering the questions.</h1>
-                <form v-else action="#" v-on:submit.prevent="submitQuestions" class="adding-question">
-                    @foreach($questions as $question)
-                        <h1 class="polling-question">
-                            {{$question->question}}
-                        </h1>
-                        <div class="sm-hr"></div>
-                        <textarea
-                            name="question_{{$question->id}}"
-                            id="question"
-                            cols="30"
-                            v-model="questions['question_{{$question->id}}']"
-                            rows="10"
-                            class="question-text"
-                            placeholder="Type your answer here"
-                        ></textarea>
-                    @endforeach
+                <form v-if="current_question" action="#" v-on:submit.prevent="submitQuestions" class="adding-question">
+                    <h1 class="polling-question">
+                        @{{ current_question.question }}
+                    </h1>
+                    <div class="sm-hr"></div>
+                    <textarea
+                        :name="'question_'+current_question.id"
+                        id="question"
+                        cols="30"
+                        v-model="questions['question_'+current_question.id]"
+                        rows="10"
+                        class="question-text"
+                        placeholder="Type your answer here"
+                    ></textarea>
                     <button class="submit-btn">Submit</button>
                 </form>
+                <h1 v-else class="polling-question">Thanks for answering the questions.</h1>
             </div>
         </div>
     </div>
@@ -367,7 +362,7 @@
                     <div class="speaker-profile-card">
                         <img src="{{$speaker->getFirstMediaUrl('image')}}" style="width: 160px; height: 160px; border-radius: 100%" alt="prof" class="prof-pic">
                         <h1 class="speaker-name">{{$speaker->name}}</h1>
-                        <p class="bio-summary">{{$speaker->description}}</p>
+                        <p class="bio-summary">{!! $speaker->description !!}</p>
                     </div>
                 @endforeach
             </div>

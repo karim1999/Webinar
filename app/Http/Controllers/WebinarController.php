@@ -57,4 +57,16 @@ class WebinarController extends Controller
     public function getSetting(){
         return Setting::findOrFail(1);
     }
+    public function getQuestionsAndPolls(){
+        $answers= auth('guest')->user()->answers->keyBy('question_id');
+        $options= auth('guest')->user()->options->keyBy('poll_id');
+        $questions= Question::all()->keyBy('id');
+        $polls= Poll::with('options')->get()->keyBy('id');
+        return [
+            "questions"=> $questions,
+            "polls"=> $polls,
+            "answers"=> $answers,
+            "options"=> $options,
+        ];
+    }
 }

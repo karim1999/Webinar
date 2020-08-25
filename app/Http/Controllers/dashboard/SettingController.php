@@ -113,16 +113,20 @@ class SettingController extends Controller
     {
         //
     }
-    public function open_question(){
+    public function open_question($id){
         $setting= Setting::findOrFail(1);
-        $setting->question_tab= $setting->question_tab ? 0 : 1;
+        $setting->question_tab= $id;
         $setting->save();
+        if($id == 0)
+            return redirect()->back()->with("status", "The questions tab was closed successfully.");
         return redirect()->back()->with("status", "The questions tab was opened successfully.");
     }
-    public function open_poll(){
+    public function open_poll($id){
         $setting= Setting::findOrFail(1);
-        $setting->poll_tab= $setting->poll_tab ? 0 : 1;
+        $setting->poll_tab= $id;
         $setting->save();
+        if($id == 0)
+            return redirect()->back()->with("status", "The polls tab was closed successfully.");
         return redirect()->back()->with("status", "The polls tab was opened successfully.");
     }
     public function reset(){

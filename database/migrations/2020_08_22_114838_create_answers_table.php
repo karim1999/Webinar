@@ -20,6 +20,10 @@ class CreateAnswersTable extends Migration
             $table->foreign('question_id')->references('id')
                 ->on('questions')
                 ->onDelete('cascade');
+            $table->unsignedBigInteger('guest_id');
+            $table->foreign('guest_id')->references('id')
+                ->on('guests')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

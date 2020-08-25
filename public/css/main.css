@@ -721,6 +721,7 @@ footer {
 }
 
 footer .footer-icon-box {
+  width: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -733,7 +734,7 @@ footer .footer-icon-box:hover .footer-icon {
 }
 
 footer .footer-icon-box:hover .icon-title {
-  display: block;
+  display: block !important;
 }
 
 footer .footer-icon-box .icon-title {
@@ -747,10 +748,6 @@ footer .footer-icon {
   width: 5.8rem;
   height: 5.8rem;
   border-radius: 50%;
-}
-
-footer .footer-icon:not(:last-child) {
-  margin-right: 2rem;
 }
 
 @media screen and (max-width: 1440px) {

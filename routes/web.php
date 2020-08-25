@@ -26,6 +26,7 @@ Route::get('/webinar', 'WebinarController@event')->name('webinar.event')->middle
 
 Route::get('/messages', 'MessageController@index');
 Route::get('/settings', 'WebinarController@getSetting');
+Route::get('/all_q_p', 'WebinarController@getQuestionsAndPolls');
 Route::post('/messages', 'MessageController@store');
 Route::post('/submit_questions', 'QuestionController@submitForm');
 Route::get('/submit_polls/{id}', 'QuestionController@submit_polls');
@@ -51,6 +52,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::get('/speaker/export', 'dashboard\SpeakerController@export')->name('speaker.export');
     Route::get('/event/export', 'dashboard\EventController@export')->name('event.export');
     Route::get('/reset', 'dashboard\SettingController@reset')->name('setting.reset');
-    Route::get('/open_poll', 'dashboard\SettingController@open_poll')->name('setting.open_poll');
-    Route::get('/open_question', 'dashboard\SettingController@open_question')->name('setting.open_question');
+    Route::get('/reset_guests', 'dashboard\GuestController@reset')->name('guest.reset');
+    Route::get('/open_poll/{id}', 'dashboard\SettingController@open_poll')->name('setting.open_poll');
+    Route::get('/open_question/{id}', 'dashboard\SettingController@open_question')->name('setting.open_question');
 });
