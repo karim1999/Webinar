@@ -112,7 +112,7 @@
                         @foreach($question->answers as $answer)
                             <tr>
                                 <td>{{$answer->id}}</td>
-                                <td>{{$answer->guest->name}}</td>
+                                <td>{{$answer->guest->first_name}}</td>
                                 <td>{{$answer->guest->email}}</td>
                                 <td>{{$answer->answer}}</td>
                                 <td>{{$answer->created_at}}</td>
