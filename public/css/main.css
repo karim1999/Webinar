@@ -608,7 +608,7 @@ body {
 
 .top-bar {
   width: 100%;
-  min-height: 8rem;
+  min-height: 8vh;
   display: flex;
   align-items: center;
 }
@@ -618,13 +618,13 @@ body {
 }
 
 main {
+  height: 80vh;
   width: 100%;
   display: flex;
 }
 
 main .video-box {
   width: 75%;
-  min-height: 80rem;
 }
 
 main .chat-window {
@@ -713,7 +713,7 @@ main .chat-window__comments-box .add-comment__btn {
 
 footer {
   width: 100%;
-  min-height: 9.9rem;
+  height: 12vh;
   background-color: #F4F4F4;
   display: flex;
   align-items: center;

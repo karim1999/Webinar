@@ -1,6 +1,6 @@
 .top-bar {
     width: 100%;
-    min-height: 8rem;
+    min-height: 8vh;
     // background-color: orange;
     display: flex;
     align-items: center;
@@ -10,6 +10,7 @@
 }
 
 main {
+    height: 80vh;
     width: 100%;
     // min-height: 40rem;//REMOVER LATER
     // background-color: gray;//REMOVER LATER
@@ -17,7 +18,7 @@ main {
     .video-box {
         width: 75%;
         // background-color: orangered; //REMOVER LATER
-        min-height: 80rem; //REMOVER LATER
+        //min-height: 80rem; //REMOVER LATER
     }
     .chat-window {
         width: 25%;
@@ -98,7 +99,7 @@ main {
 
 footer {
     width: 100%;
-    min-height: 9.9rem;
+    height: 12vh;
     background-color: #F4F4F4;
     display: flex;
     align-items: center;
