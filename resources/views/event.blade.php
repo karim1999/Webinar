@@ -336,7 +336,7 @@
                         <div class="appointment-info">
                             <h1 class="appointment-title">{{$event->title}}</h1>
                             <p class="appointment-summary">
-                                {{$event->description}}
+                                {!! $event->description !!}
                             </p>
                         </div>
                     </li>

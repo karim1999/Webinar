@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label  class="col-2 col-form-label">Description</label>
                     <div class="col-10">
-                        <textarea class="form-control" name="description">{{old('description', $event->description)}}</textarea>
+                        <textarea id="kt-ckeditor-1" class="form-control" name="description">{{old('description', $event->description)}}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -68,3 +68,41 @@
         </form>
     </div>
 @endsection
+@push('scripts')
+    <script src="{{asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+    <script>
+        var KTCkeditor = function () {
+            // Private functions
+            var demos = function () {
+                ClassicEditor
+                    .create( document.querySelector( '#kt-ckeditor-1' ),  {
+                        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+                        heading: {
+                            options: [
+                                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                            ]
+                        }
+                    } )
+                    .then( editor => {
+                        console.log( editor );
+                    } )
+                    .catch( error => {
+                        console.error( error );
+                    } );
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    demos();
+                }
+            };
+        }();
+
+        // Initialization
+        jQuery(document).ready(function() {
+            KTCkeditor.init();
+        });    </script>
+@endpush
