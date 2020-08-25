@@ -872,11 +872,12 @@ footer .footer-icon:not(:last-child) {
 
   main .video-box {
     width: 100%;
-    min-height: 100%;
+    max-height: 40vh;
   }
 
   main .chat-window {
     width: 100%;
+    max-height: 40vh;
   }
 
   footer .footer-icon:not(:last-child) {
