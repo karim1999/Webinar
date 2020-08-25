@@ -19,7 +19,7 @@
     [v-cloak] { display: none; }
 </style>
 <div class="top-bar">
-    <img src="{{$setting->getFirstMediaUrl('logo')}}" alt="logo" style="height: 30px; width: 250px" class="top-bar__logo" />
+    <img src="{{$setting->getFirstMediaUrl('logo_dark')}}" alt="logo" style="height: 30px; width: 250px" class="top-bar__logo" />
 </div>
 <main>
     <div class="video-box">
@@ -69,33 +69,40 @@
     </div>
 </main>
 <footer>
-    <div class="footer-icon-box" id="resources_button" onclick="onResourcesList()">
-        <img
-            src="{{asset('img/icon-1.svg')}}"
-            alt="resources-list"
-            class="footer-icon"
-            id="resouces-icon"
-        />
-        <span class="icon-title" id="resources">Resources List</span>
-    </div>
-    <div class="footer-icon-box" id="poll_button" onclick="onPolling()">
-        <img
-            src="{{asset('img/icon-2.svg')}}"
-            alt="resources-list"
-            class="footer-icon"
-            id="polling-icon"
-        />
-        <span class="icon-title" id="polling-title">Polling</span>
-    </div>
-    <div class="footer-icon-box" id="question_button" onclick="onQA()">
-        <img
-            src="{{asset('img/icon-3.svg')}}"
-            alt="resources-list"
-            class="footer-icon"
-            id="QA-icon"
-        />
-        <span class="icon-title" id="QA-title">Q&As</span>
-    </div>
+    @if ($setting->enable_resources)
+        <div class="footer-icon-box" id="resources_button" onclick="onResourcesList()">
+            <img
+                src="{{asset('img/icon-1.svg')}}"
+                alt="resources-list"
+                class="footer-icon"
+                id="resouces-icon"
+            />
+            <span class="icon-title" id="resources">Resources List</span>
+        </div>
+    @endif
+        @if ($setting->enable_polls)
+            <div class="footer-icon-box" id="poll_button" onclick="onPolling()">
+                <img
+                    src="{{asset('img/icon-2.svg')}}"
+                    alt="resources-list"
+                    class="footer-icon"
+                    id="polling-icon"
+                />
+                <span class="icon-title" id="polling-title">Polling</span>
+            </div>
+        @endif
+        @if ($setting->enable_questions)
+            <div class="footer-icon-box" id="question_button" onclick="onQA()">
+                <img
+                    src="{{asset('img/icon-3.svg')}}"
+                    alt="resources-list"
+                    class="footer-icon"
+                    id="QA-icon"
+                />
+                <span class="icon-title" id="QA-title">Q&As</span>
+            </div>
+        @endif
+
 {{--    <div class="footer-icon-box" id="social_button" onclick="onSocialFeed()">--}}
 {{--        <img--}}
 {{--            src="{{asset('img/icon-4.svg')}}"--}}
@@ -105,19 +112,23 @@
 {{--        />--}}
 {{--        <span class="icon-title" id="social-feed-title">Social Feed</span>--}}
 {{--    </div>--}}
-    <div class="footer-icon-box" onclick="onEventAgenda()">
-        <img
-            src="{{asset('img/icon-5.svg')}}"
-            alt="event-agenda"
-            class="footer-icon"
-            id="event-agena-icon"
-        />
-        <span class="icon-title" id="even-agena-title">Event Agenda</span>
-    </div>
-    <div class="footer-icon-box" id="speaker_button" onclick="onSpeakersProfile()">
-        <img src="{{asset('img/icon-6.svg')}}" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
-        <span class="icon-title" id="speakers-profile-title">Speakers Profile</span>
-    </div>
+        @if ($setting->enable_agenda)
+            <div class="footer-icon-box" onclick="onEventAgenda()">
+                <img
+                    src="{{asset('img/icon-5.svg')}}"
+                    alt="event-agenda"
+                    class="footer-icon"
+                    id="event-agena-icon"
+                />
+                <span class="icon-title" id="even-agena-title">Event Agenda</span>
+            </div>
+        @endif
+        @if ($setting->enable_speakers)
+            <div class="footer-icon-box" id="speaker_button" onclick="onSpeakersProfile()">
+                <img src="{{asset('img/icon-6.svg')}}" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
+                <span class="icon-title" id="speakers-profile-title">Speakers Profile</span>
+            </div>
+        @endif
 </footer>
 <div id="tabs_container">
     <input ref="guest_id" type="hidden" style="display: none" value="{{auth('guest')->user()->id}}">

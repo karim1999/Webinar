@@ -22,4 +22,9 @@ class MessageController extends Controller
         Guest::findOrFail($request->post('guest_id'))->messages()->save($message);
         return Message::with('guest')->get();
     }
+    public function delete(Request $request){
+        $message= Message::findOrFail($request->post('message_id'));
+        $message->delete();
+        return Message::with('guest')->get();
+    }
 }

@@ -91,6 +91,8 @@ class SettingController extends Controller
 
         if($request->file('logo'))
             $setting->addMediaFromRequest("logo")->toMediaCollection('logo');
+        if($request->file('logo_dark'))
+            $setting->addMediaFromRequest("logo_dark")->toMediaCollection('logo_dark');
 
         $setting->title= $request->post('title');
         $setting->event_title= $request->post('event_title');
@@ -99,6 +101,13 @@ class SettingController extends Controller
         $setting->keywords= $request->post('keywords');
         $setting->gradient_from= $request->post('gradient_from');
         $setting->gradient_to= $request->post('gradient_to');
+
+        $setting->enable_questions= $request->post('enable_questions') ? 1 : 0;
+        $setting->enable_polls= $request->post('enable_polls') ? 1 : 0;
+        $setting->enable_speakers= $request->post('enable_speakers') ? 1 : 0;
+        $setting->enable_resources= $request->post('enable_resources') ? 1 : 0;
+        $setting->enable_agenda= $request->post('enable_agenda') ? 1 : 0;
+//        $setting->enable_social= $request->post('enable_social') ? 1 : 0;
         $setting->save();
         return redirect()->back()->with("status", "The settings were added successfully.");
     }

@@ -33,6 +33,13 @@ const chat = new Vue({
         scrollBottom(){
             let elem= document.getElementById('chat_box');
             elem.scrollTop = elem.scrollHeight;
+        },
+        deleteMessage(id){
+            return axios.post('/delete_message', {
+                message_id: id,
+            }).then(res => {
+                this.messages= res.data
+            })
         }
     }
 });

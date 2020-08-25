@@ -54,6 +54,7 @@
                                 <h2 class="user-name">@{{ message.guest.first_name }} @{{ message.guest.last_name }}</h2>
                                 <p class="user-comment">
                                     @{{ message.message }}
+                                    <i @click="deleteMessage(message.id)" style="color: red; cursor:pointer;" class="fa fa-times"></i>
                                 </p>
                             </div>
                         </div>

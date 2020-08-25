@@ -21,9 +21,15 @@ class CreateSettingsTable extends Migration
             $table->string('event_title')->default("<span>Virtual</span> <br> Event <br> 2020");
             $table->string('link')->default("https://www.youtube.com/embed/Z4vD9ppAQhw");
             $table->longText('description')->nullable();
-            $table->boolean('poll_tab')->default(0);
-            $table->boolean('question_tab')->default(0);
+            $table->integer('poll_tab')->default(0);
+            $table->integer('question_tab')->default(0);
             $table->string('keywords')->default("event, 2020, webinar");
+            $table->boolean('enable_polls')->default(1);
+            $table->boolean('enable_questions')->default(1);
+            $table->boolean('enable_resources')->default(1);
+            $table->boolean('enable_speakers')->default(1);
+            $table->boolean('enable_social')->default(0);
+            $table->boolean('enable_agenda')->default(1);
             $table->timestamps();
         });
     }

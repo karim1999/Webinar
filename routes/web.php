@@ -28,6 +28,7 @@ Route::get('/messages', 'MessageController@index');
 Route::get('/settings', 'WebinarController@getSetting');
 Route::get('/all_q_p', 'WebinarController@getQuestionsAndPolls');
 Route::post('/messages', 'MessageController@store');
+Route::post('/delete_message', 'MessageController@delete');
 Route::post('/submit_questions', 'QuestionController@submitForm');
 Route::get('/submit_polls/{id}', 'QuestionController@submit_polls');
 

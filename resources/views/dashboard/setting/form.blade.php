@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label  class="col-2 col-form-label">Logo</label>
+                    <label  class="col-2 col-form-label">Light Logo (250 x 30)</label>
                     <div class="col-10">
                         <div class="image-input image-input-outline" id="kt_image_1">
                             <div class="image-input-wrapper" style="background-size: contain;
@@ -47,6 +47,26 @@
                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                 <i class="fa fa-pen icon-sm text-muted"></i>
                                 <input type="file" name="logo" accept=".png, .jpg, .jpeg"/>
+                                <input type="hidden" name="profile_avatar_remove"/>
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+		<i class="ki ki-bold-close icon-xs text-muted"></i>
+	</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Dark Logo (250 x 30)</label>
+                    <div class="col-10">
+                        <div class="image-input image-input-outline" id="kt_image_2">
+                            <div class="image-input-wrapper" style="background-size: contain;
+                                background-repeat: no-repeat;
+                                background-position: center;background-image: url({{$setting->getFirstMediaUrl('logo_dark')}})"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="logo_dark" accept=".png, .jpg, .jpeg"/>
                                 <input type="hidden" name="profile_avatar_remove"/>
                             </label>
 
@@ -98,6 +118,42 @@
                         <textarea class="form-control" name="description">{{old('description', $setting->description)}}</textarea>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Enable Resources Tab: </label>
+                    <div class="col-10" style="display: flex; align-items: center">
+                        <input type="checkbox" name="enable_resources" {{$setting->enable_resources ? "checked" : ""}} />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Enable Polls Tab: </label>
+                    <div class="col-10" style="display: flex; align-items: center">
+                        <input type="checkbox" name="enable_polls" {{$setting->enable_polls ? "checked" : ""}} />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Enable Questions Tab: </label>
+                    <div class="col-10" style="display: flex; align-items: center">
+                        <input type="checkbox" name="enable_questions" {{$setting->enable_questions ? "checked" : ""}} />
+                    </div>
+                </div>
+{{--                <div class="form-group row">--}}
+{{--                    <label for="example-color-input" class="col-2 col-form-label">Enable Social Tab: </label>--}}
+{{--                    <div class="col-10" style="display: flex; align-items: center">--}}
+{{--                        <input type="checkbox" name="enable_social" {{$setting->enable_social ? "checked" : ""}} />--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Enable Agenda Tab: </label>
+                    <div class="col-10" style="display: flex; align-items: center">
+                        <input type="checkbox" name="enable_agenda" {{$setting->enable_agenda ? "checked" : ""}} />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Enable Speakers Tab: </label>
+                    <div class="col-10" style="display: flex; align-items: center">
+                        <input type="checkbox" name="enable_speakers" {{$setting->enable_speakers ? "checked" : ""}} />
+                    </div>
+                </div>
             </div>
             <div class="card-footer">
                 <div class="row">
@@ -118,5 +174,6 @@
 @push('scripts')
     <script>
         var avatar1 = new KTImageInput('kt_image_1');
+        var avatar2 = new KTImageInput('kt_image_2');
     </script>
 @endpush

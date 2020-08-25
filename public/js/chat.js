@@ -135,6 +135,15 @@ var chat = new Vue({
     scrollBottom: function scrollBottom() {
       var elem = document.getElementById('chat_box');
       elem.scrollTop = elem.scrollHeight;
+    },
+    deleteMessage: function deleteMessage(id) {
+      var _this4 = this;
+
+      return axios.post('/delete_message', {
+        message_id: id
+      }).then(function (res) {
+        _this4.messages = res.data;
+      });
     }
   }
 });
