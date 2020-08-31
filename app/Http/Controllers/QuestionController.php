@@ -32,6 +32,10 @@ class QuestionController extends Controller
         $guestOption->guest_id= auth('guest')->user()->id;
         $guestOption->poll_id= $option->poll_id;
         $guestOption->save();
-        return "done";
+        return [
+            "question"=> $option->poll->question,
+            "options"=> $option->poll->options,
+            "total"=> $option->poll->options->sum('votes')
+        ];
     }
 }

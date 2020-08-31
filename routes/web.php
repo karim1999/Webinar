@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/webinar/register', 'WebinarController@register')->name('webinar.register')->middleware('guest:guest');
 Route::post('/webinar/register', 'WebinarController@register_guest')->name('webinar.register');
+Route::get('/webinar/logout', 'WebinarController@logout')->name('webinar.logout');
 Route::get('/webinar', 'WebinarController@event')->name('webinar.event')->middleware('auth:guest');
 
 Route::get('/messages', 'MessageController@index');
@@ -45,6 +46,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::resource('/speaker', 'dashboard\SpeakerController')->except(['show']);
     Route::resource('/event', 'dashboard\EventController')->except(['show']);
     Route::resource('/message', 'dashboard\MessageController')->except(['show']);
+    Route::get('/message/reset', 'dashboard\MessageController@reset')->name('message.reset');
     Route::get('/question/export', 'dashboard\QuestionController@export')->name('question.export');
     Route::get('/guest/export', 'dashboard\GuestController@export')->name('guest.export');
     Route::get('/poll/export', 'dashboard\PollController@export')->name('poll.export');

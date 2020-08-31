@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Exports\GuestExport;
 use App\Exports\MessageExport;
 use App\Http\Controllers\Controller;
+use App\Message;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -89,6 +90,11 @@ class MessageController extends Controller
     public function export()
     {
         return Excel::download(new MessageExport, 'messages.xlsx');
+    }
+    public function reset()
+    {
+        Message::where('id', 'like', '%%')->delete();
+        return redirect()->back()->with("status", "The messages were reset successfully.");
     }
 
 }

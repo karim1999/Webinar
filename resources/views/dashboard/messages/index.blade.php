@@ -20,10 +20,9 @@
                 </a>
 
                 <!--begin::Button-->
-{{--                <a href="{{route('dashboard.guest.create')}}" class="btn btn-primary font-weight-bolder">--}}
-{{--                    <i class="la la-plus"></i>--}}
-{{--                    New Guest--}}
-{{--                </a>--}}
+                <a href="{{route('dashboard.message.reset')}}" class="btn btn-danger font-weight-bolder">
+                    Reset
+                </a>
                 <!--end::Button-->
             </div>
         </div>

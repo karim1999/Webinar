@@ -775,7 +775,8 @@ var tabs = new Vue({
     answered: false,
     polled: false,
     answeredQuestions: [],
-    answeredPolls: []
+    answeredPolls: [],
+    results: null
   },
   mounted: function mounted() {
     var _this = this;
@@ -896,17 +897,26 @@ var tabs = new Vue({
       if (!this.isPolling) {
         this.isPolling = true;
         axios.get('/submit_polls/' + id).then(function (res) {
+          console.log(res.data);
+          _this5.results = res.data;
+
           _this5.$toasted.success('Your vote was recorded successfully'); // this.$refs["poll_"+id].parentNode.remove();
 
 
           _this5.answeredPolls[_this5.current_poll.id] = {};
           _this5.polled = true;
           _this5.isPolling = false;
+          document.getElementById("polling").style.display = "none";
+          var pollingTitle = document.getElementById('polling-title');
+          pollingTitle.style.display = "none";
         })["catch"](function (err) {
           console.log(err);
           _this5.isPolling = false;
         });
       }
+    },
+    hideResults: function hideResults() {
+      this.results = null;
     }
   }
 });

@@ -20,6 +20,15 @@ class WebinarController extends Controller
             "setting" => Setting::findOrFail(1)
         ]);
     }
+    public function logout(Request $request){
+        Auth::guard('guest')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('webinar.register');
+    }
     public function register_guest(Request $request){
         $validatedData = $request->validate([
             'first_name' => 'required',

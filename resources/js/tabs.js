@@ -20,6 +20,7 @@ const tabs = new Vue({
         polled: false,
         answeredQuestions: [],
         answeredPolls: [],
+        results: null,
     },
     mounted(){
         this.loadData()
@@ -63,7 +64,7 @@ const tabs = new Vue({
             } else{
                 return null;
             }
-        }
+        },
     },
     methods: {
         loadData(){
@@ -120,16 +121,24 @@ const tabs = new Vue({
             if(!this.isPolling){
                 this.isPolling= true
                 axios.get('/submit_polls/'+id).then(res => {
+                    console.log(res.data)
+                    this.results= res.data
                     this.$toasted.success('Your vote was recorded successfully')
                     // this.$refs["poll_"+id].parentNode.remove();
                     this.answeredPolls[this.current_poll.id]= {}
                     this.polled= true
                     this.isPolling= false
+                    document.getElementById("polling").style.display = "none";
+                    const pollingTitle = document.getElementById('polling-title')
+                    pollingTitle.style.display = "none";
                 }).catch(err => {
                     console.log(err)
                     this.isPolling= false
                 })
             }
+        },
+        hideResults(){
+            this.results= null;
         }
     }
 });

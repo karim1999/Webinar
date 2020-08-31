@@ -54,11 +54,11 @@
                         <td>{{$question->created_at}}</td>
                         <td>
                             @if($setting->question_tab == $question->id)
-                                <a data-toggle="tooltip" data-theme="dark" title="Close Question Tab" href="{{route('dashboard.setting.open_question', 0)}}"  class="btn btn-info font-weight-bolder">
+                                <a data-toggle="tooltip" data-theme="dark" title="Close This Question Tab" href="{{route('dashboard.setting.open_question', 0)}}"  class="btn btn-info font-weight-bolder">
                                     <i class="fa fa-door-closed"></i>
                                 </a>
                             @else
-                                <a data-toggle="tooltip" data-theme="dark" title="Open Question Tab" href="{{route('dashboard.setting.open_question', $question->id)}}" class="btn btn-info font-weight-bolder">
+                                <a data-toggle="tooltip" data-theme="dark" title="Open This Question Tab" href="{{route('dashboard.setting.open_question', $question->id)}}" class="btn btn-info font-weight-bolder">
                                     <i class="fa fa-door-open"></i>
                                 </a>
                             @endif
@@ -99,7 +99,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered table-hover table-checkable">
+                    <table class="table table-bordered table-hover table-checkable answers">
                         <thead>
                         <tr>
                             <th>Record ID</th>
@@ -137,6 +137,7 @@
     <script>
         $(document).ready( function () {
             $('#kt_datatable').DataTable();
+            $('.answers').DataTable();
         } );
     </script>
     <!--end::Page Vendors-->

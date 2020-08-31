@@ -17,9 +17,21 @@
 <body>
 <style>
     [v-cloak] { display: none; }
+    .progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 2%;
+        background-color: #DBEEFF;
+        border-radius: 0.8rem 0 0 0.8rem;
+    }
 </style>
-<div class="top-bar">
+<div class="top-bar" style="justify-content: space-between">
     <img src="{{$setting->getFirstMediaUrl('logo_dark')}}" alt="logo" style="height: 30px" class="top-bar__logo" />
+    <a style="text-decoration: none;
+    margin-right: 20px;
+    font-size: 16px;" href="{{route('webinar.logout')}}">Logout</a>
 </div>
 <main>
     <div class="video-box">
@@ -189,6 +201,33 @@
                 </div>
             </div>
             <h1 v-else class="polling-question">Thanks for answering the questions.</h1>
+        </div>
+    </div>
+    <div v-if="results" class="overlay" id="poll-answers" style="display: flex !important;">
+        <div class="overlay__content">
+            <loading :active.sync="isPolling"
+                     :can-cancel="false"
+                     :is-full-page="false"></loading>
+            <img
+                src="{{asset('img/exit.svg')}}"
+                alt="exit"
+                class="exit"
+                @click="hideResults"
+            />
+            <div class="header">
+                <h1 class="overlay__content-header">Results</h1>
+            </div>
+            <hr />
+            <div class="polling-content">
+                <h1 class="polling-question">
+                    @{{ results.question }}
+                </h1>
+                <div class="sm-hr"></div>
+                <div v-for="option in results.options" class="polling-answer">
+                    <p style="position: inherit; z-index: 78234" class="polling-answer__text">@{{ option.option }} (@{{ Math.round(option.votes/results.total*100) }}%)</p>
+                    <span class="progress" :style="{width: Math.round(option.votes/results.total*100)+'%'}"></span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="overlay" id="QA">
