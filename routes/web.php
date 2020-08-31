@@ -32,6 +32,7 @@ Route::post('/messages', 'MessageController@store');
 Route::post('/delete_message', 'MessageController@delete');
 Route::post('/submit_questions', 'QuestionController@submitForm');
 Route::get('/submit_polls/{id}', 'QuestionController@submit_polls');
+Route::get('/poll/api/{poll}', 'dashboard\PollController@api')->name('poll.api');
 
 Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function (){
     Route::get('/', function (){
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::resource('/question', 'dashboard\QuestionController')->except(['show']);
     Route::resource('/guest', 'dashboard\GuestController')->except(['show']);
     Route::resource('/poll', 'dashboard\PollController')->except(['show']);
+    Route::get('/poll/single/{poll}', 'dashboard\PollController@show')->name('poll.show');
     Route::resource('/message', 'dashboard\MessageController')->except(['show']);
     Route::resource('/resource', 'dashboard\ResourceController')->except(['show']);
     Route::resource('/speaker', 'dashboard\SpeakerController')->except(['show']);

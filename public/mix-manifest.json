@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/main.css": "/css/main.css",
     "/js/chat.js": "/js/chat.js",
+    "/js/poll.js": "/js/poll.js",
     "/js/tabs.js": "/js/tabs.js"
 }

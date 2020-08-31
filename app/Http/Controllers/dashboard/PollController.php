@@ -77,12 +77,23 @@ class PollController extends Controller
     /**
      * Display the specified poll.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Poll $poll
+     * @return void
      */
-    public function show($id)
+    public function show(Poll $poll)
     {
+        return view('dashboard.poll.single', [
+            "poll"=> $poll,
+        ]);
         //
+    }
+    public function api(Poll $poll)
+    {
+        return [
+            "question"=> $poll->question,
+            "options"=> $poll->options,
+            "total"=> $poll->options->sum('votes')
+        ];
     }
 
     /**
