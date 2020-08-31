@@ -44,12 +44,12 @@
                     </div>
                     <div class="chat-window__comments-box" id="chat_box">
                         <div class="user-comments-box" v-for="message in messages" :key="message.id">
-                            <img
-                                style="width: 32px; height: 32px;"
-                                src="{{asset('img/profile-pic.png')}}"
-                                alt="profile-pic"
-                                class="user-comments-box__profile-pic"
-                            />
+{{--                            <img--}}
+{{--                                style="width: 32px; height: 32px;"--}}
+{{--                                src="{{asset('img/profile-pic.png')}}"--}}
+{{--                                alt="profile-pic"--}}
+{{--                                class="user-comments-box__profile-pic"--}}
+{{--                            />--}}
                             <div class="user-comments-box__content">
                                 <h2 class="user-name">@{{ message.guest.first_name }} @{{ message.guest.last_name }}</h2>
                                 <p class="user-comment">

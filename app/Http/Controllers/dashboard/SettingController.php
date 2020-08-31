@@ -101,6 +101,7 @@ class SettingController extends Controller
         $setting->keywords= $request->post('keywords');
         $setting->gradient_from= $request->post('gradient_from');
         $setting->gradient_to= $request->post('gradient_to');
+        $setting->chat_background= $request->post('chat_background');
 
         $setting->enable_questions= $request->post('enable_questions') ? 1 : 0;
         $setting->enable_polls= $request->post('enable_polls') ? 1 : 0;
@@ -108,6 +109,14 @@ class SettingController extends Controller
         $setting->enable_resources= $request->post('enable_resources') ? 1 : 0;
         $setting->enable_agenda= $request->post('enable_agenda') ? 1 : 0;
 //        $setting->enable_social= $request->post('enable_social') ? 1 : 0;
+
+        $setting->polls_tab_name= $request->post('polls_tab_name');
+        $setting->questions_tab_name= $request->post('questions_tab_name');
+        $setting->resources_tab_name= $request->post('resources_tab_name');
+        $setting->speakers_tab_name= $request->post('speakers_tab_name');
+        $setting->agenda_tab_name= $request->post('agenda_tab_name');
+//        $setting->social_tab_name= $request->post('social_tab_name');
+
         $setting->save();
         return redirect()->back()->with("status", "The settings were added successfully.");
     }

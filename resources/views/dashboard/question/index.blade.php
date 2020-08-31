@@ -54,21 +54,23 @@
                         <td>{{$question->created_at}}</td>
                         <td>
                             @if($setting->question_tab == $question->id)
-                                <a href="{{route('dashboard.setting.open_question', 0)}}"  class="btn btn-info font-weight-bolder">
+                                <a data-toggle="tooltip" data-theme="dark" title="Close Question Tab" href="{{route('dashboard.setting.open_question', 0)}}"  class="btn btn-info font-weight-bolder">
                                     <i class="fa fa-door-closed"></i>
                                 </a>
                             @else
-                                <a href="{{route('dashboard.setting.open_question', $question->id)}}" class="btn btn-info font-weight-bolder">
+                                <a data-toggle="tooltip" data-theme="dark" title="Open Question Tab" href="{{route('dashboard.setting.open_question', $question->id)}}" class="btn btn-info font-weight-bolder">
                                     <i class="fa fa-door-open"></i>
                                 </a>
                             @endif
+                            <span data-toggle="tooltip" data-theme="dark" title="Answers">
                             <button data-toggle="modal" data-target="#answers_{{$question->id}}" class="btn btn-sm btn-icon btn-success">
                                 <i class="fa fa-tasks"></i>
                             </button>
-                            <a href="{{route('dashboard.question.edit', $question->id)}}" class="btn btn-sm btn-icon btn-primary">
+                            </span>
+                            <a data-toggle="tooltip" data-theme="dark" title="Edit" href="{{route('dashboard.question.edit', $question->id)}}" class="btn btn-sm btn-icon btn-primary">
                                 <i class="fa fa-pen"></i>
                             </a>
-                            <a onclick="event.preventDefault();
+                            <a  data-toggle="tooltip" data-theme="dark" title="Delete" onclick="event.preventDefault();
                                 document.getElementById('question-delete-{{$question->id}}').submit();" href="{{route('dashboard.question.destroy', $question->id)}}" class="btn btn-sm btn-icon btn-danger">
                                 <i class="fa fa-times"></i>
                             </a>

@@ -19,7 +19,7 @@
     [v-cloak] { display: none; }
 </style>
 <div class="top-bar">
-    <img src="{{$setting->getFirstMediaUrl('logo_dark')}}" alt="logo" style="height: 30px; width: 250px" class="top-bar__logo" />
+    <img src="{{$setting->getFirstMediaUrl('logo_dark')}}" alt="logo" style="height: 30px" class="top-bar__logo" />
 </div>
 <main>
     <div class="video-box">
@@ -32,18 +32,18 @@
             allowfullscreen
         ></iframe>
     </div>
-    <div class="chat-window" id="chat">
+    <div class="chat-window" id="chat" style="background-color: {{$setting->chat_background}}">
         <div class="chat-window__title-box">
             <h1 class="chat-window__title">Chat Window</h1>
         </div>
         <div v-cloak class="chat-window__comments-box" id="chat_box">
             <div class="user-comments-box" v-for="message in messages" :key="message.id">
-                <img
-                    style="width: 32px; height: 32px;"
-                    src="{{asset('img/profile-pic.png')}}"
-                    alt="profile-pic"
-                    class="user-comments-box__profile-pic"
-                />
+{{--                <img--}}
+{{--                    style="width: 32px; height: 32px;"--}}
+{{--                    src="{{asset('img/profile-pic.png')}}"--}}
+{{--                    alt="profile-pic"--}}
+{{--                    class="user-comments-box__profile-pic"--}}
+{{--                />--}}
                 <div class="user-comments-box__content">
                     <h2 class="user-name">@{{ message.guest.first_name }} @{{ message.guest.last_name }}</h2>
                     <p class="user-comment">
@@ -77,7 +77,7 @@
                 class="footer-icon"
                 id="resouces-icon"
             />
-            <span class="icon-title" id="resources">Resources List</span>
+            <span class="icon-title" id="resources">{{$setting->resources_tab_name}}</span>
         </div>
     @endif
         @if ($setting->enable_polls)
@@ -88,7 +88,7 @@
                     class="footer-icon"
                     id="polling-icon"
                 />
-                <span class="icon-title" id="polling-title">Polling</span>
+                <span class="icon-title" id="polling-title">{{$setting->polls_tab_name}}</span>
             </div>
         @endif
         @if ($setting->enable_questions)
@@ -99,7 +99,7 @@
                     class="footer-icon"
                     id="QA-icon"
                 />
-                <span class="icon-title" id="QA-title">Q&As</span>
+                <span class="icon-title" id="QA-title">{{$setting->questions_tab_name}}</span>
             </div>
         @endif
 
@@ -120,13 +120,13 @@
                     class="footer-icon"
                     id="event-agena-icon"
                 />
-                <span class="icon-title" id="even-agena-title">Event Agenda</span>
+                <span class="icon-title" id="even-agena-title">{{$setting->agenda_tab_name}}</span>
             </div>
         @endif
         @if ($setting->enable_speakers)
             <div class="footer-icon-box" id="speaker_button" onclick="onSpeakersProfile()">
                 <img src="{{asset('img/icon-6.svg')}}" alt="resources-list" class="footer-icon" id="speakers-profile-icon" />
-                <span class="icon-title" id="speakers-profile-title">Speakers Profile</span>
+                <span class="icon-title" id="speakers-profile-title">{{$setting->speakers_tab_name}}</span>
             </div>
         @endif
 </footer>
@@ -339,7 +339,7 @@
             <ul class="agenda-list">
                 @foreach($events as $event)
                     <li class="agenda-list-item">
-                        <div class="from-to-time">
+                        <div class="from-to-time" style="background-image: linear-gradient(to bottom, {{$setting->gradient_from}}, {{$setting->gradient_to}})">
                             <p class="from">{{$event->from}}</p>
                             <hr />
                             <p class="to">{{$event->to}}</p>

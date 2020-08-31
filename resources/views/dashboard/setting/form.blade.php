@@ -107,6 +107,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="example-color-input" class="col-2 col-form-label">Chat Background Color: </label>
+                    <div class="col-10">
+                        <input class="form-control" type="color" value="{{old('chat_background', $setting->chat_background)}}" name="chat_background"/>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="example-color-input" class="col-2 col-form-label">Keywords: </label>
                     <div class="col-10">
                         <input class="form-control" type="text" value="{{old('keywords', $setting->keywords)}}" name="keywords"/>
@@ -154,6 +160,42 @@
                         <input type="checkbox" name="enable_speakers" {{$setting->enable_speakers ? "checked" : ""}} />
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Polls Tab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('polls_tab_name', $setting->polls_tab_name)}}" name="polls_tab_name"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Questions Tab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('questions_tab_name', $setting->questions_tab_name)}}" name="questions_tab_name"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Resources Tab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('resources_tab_name', $setting->resources_tab_name)}}" name="resources_tab_name"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Speakers Tab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('speakers_tab_name', $setting->speakers_tab_name)}}" name="speakers_tab_name"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">Agenda Tab Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('agenda_tab_name', $setting->agenda_tab_name)}}" name="agenda_tab_name"/>
+                    </div>
+                </div>
+{{--                <div class="form-group row">--}}
+{{--                    <label  class="col-2 col-form-label">Social Tab Name</label>--}}
+{{--                    <div class="col-10">--}}
+{{--                        <input class="form-control" type="text" value="{{old('social_tab_name', $setting->social_tab_name)}}" name="social_tab_name"/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
             <div class="card-footer">
                 <div class="row">
