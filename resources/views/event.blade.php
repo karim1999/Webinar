@@ -29,9 +29,7 @@
 </style>
 <div class="top-bar" style="justify-content: space-between">
     <img src="{{$setting->getFirstMediaUrl('logo_dark')}}" alt="logo" style="height: 30px" class="top-bar__logo" />
-    <a style="text-decoration: none;
-    margin-right: 20px;
-    font-size: 16px;" href="{{route('webinar.logout')}}">Logout</a>
+    <a style="text-decoration: none; margin-right: 20px; font-size: 16px;" href="{{route('webinar.logout')}}"><img style=" width: 30px" src="{{asset('img/logout.svg')}}" alt=""></a>
 </div>
 <main>
     <div class="video-box">
@@ -257,7 +255,7 @@
                     ></textarea>
                     <button class="submit-btn">Submit</button>
                 </form>
-                <h1 v-else class="polling-question">Thanks for answering the questions.</h1>
+                <h1 v-else class="polling-question">{{$setting->after_question}}</h1>
             </div>
         </div>
     </div>

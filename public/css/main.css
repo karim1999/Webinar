@@ -656,7 +656,7 @@ main .chat-window__title {
 }
 
 main .chat-window__comments-box {
-  height: 73rem;
+  height: 73vh;
   overflow-y: scroll;
   padding: 3rem;
   display: flex;
@@ -761,10 +761,6 @@ footer .footer-icon {
     font-size: 7rem;
     line-height: 7rem;
   }
-
-  .company-logo-white {
-    width: 60%;
-  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -793,10 +789,6 @@ footer .footer-icon {
   .bg-container .left-panel .company-logo-white {
     left: 50%;
     transform: translateX(-50%);
-  }
-
-  .company-logo-white {
-    width: 25rem;
   }
 
   .bg-container .right-panel {

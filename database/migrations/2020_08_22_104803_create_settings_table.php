@@ -37,6 +37,7 @@ class CreateSettingsTable extends Migration
             $table->string('speakers_tab_name')->default("Speakers");
             $table->string('social_tab_name')->default("Social");
             $table->string('agenda_tab_name')->default("Event Agenda");
+            $table->string('after_question')->default("Thanks for answering the question.");
             $table->timestamps();
         });
     }

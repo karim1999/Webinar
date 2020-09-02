@@ -16,7 +16,7 @@
 <div class="bg-container">
     <!-- <img src="img/Group 680.png" alt="picture" class="left-panel" /> -->
     <div class="left-panel" style="background-image: linear-gradient(to bottom, {{$setting->gradient_from}}, {{$setting->gradient_to}})">
-        <img style="height: 30px" src="{{$setting->getFirstMediaUrl('logo')}}" alt="company logo" class="company-logo-white">
+        <img style="height: 45px" src="{{$setting->getFirstMediaUrl('logo')}}" alt="company logo" class="company-logo-white">
         <h1 class="webinar-title">
 {{--            <span>Virtual</span> <br> Event <br> 2020--}}
             {!! $setting->event_title !!}

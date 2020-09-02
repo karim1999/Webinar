@@ -190,6 +190,12 @@
                         <input class="form-control" type="text" value="{{old('agenda_tab_name', $setting->agenda_tab_name)}}" name="agenda_tab_name"/>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label  class="col-2 col-form-label">After Question Message:</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" value="{{old('after_question', $setting->after_question)}}" name="after_question"/>
+                    </div>
+                </div>
 {{--                <div class="form-group row">--}}
 {{--                    <label  class="col-2 col-form-label">Social Tab Name</label>--}}
 {{--                    <div class="col-10">--}}

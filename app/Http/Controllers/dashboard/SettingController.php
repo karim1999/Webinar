@@ -115,6 +115,8 @@ class SettingController extends Controller
         $setting->resources_tab_name= $request->post('resources_tab_name');
         $setting->speakers_tab_name= $request->post('speakers_tab_name');
         $setting->agenda_tab_name= $request->post('agenda_tab_name');
+
+        $setting->after_question= $request->post('after_question');
 //        $setting->social_tab_name= $request->post('social_tab_name');
 
         $setting->save();
