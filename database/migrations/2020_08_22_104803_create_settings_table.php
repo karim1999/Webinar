@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -38,6 +39,7 @@ class CreateSettingsTable extends Migration
             $table->string('social_tab_name')->default("Social");
             $table->string('agenda_tab_name')->default("Event Agenda");
             $table->string('after_question')->default("Thanks for answering the question.");
+            $table->string('event_time')->default(Carbon::now()->toDateTimeLocalString());
             $table->timestamps();
         });
     }

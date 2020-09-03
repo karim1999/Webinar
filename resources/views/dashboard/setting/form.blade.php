@@ -202,6 +202,14 @@
 {{--                        <input class="form-control" type="text" value="{{old('social_tab_name', $setting->social_tab_name)}}" name="social_tab_name"/>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
+
+                <div class="form-group row">
+                    <label for="example-datetime-local-input" class="col-2 col-form-label">Time of the event</label>
+                    <div class="col-10">
+                        <input class="form-control" type="datetime-local" value="{{old('event_time', $setting->event_time)}}" name="event_time" id="example-datetime-local-input"/>
+                    </div>
+                </div>
+
             </div>
             <div class="card-footer">
                 <div class="row">

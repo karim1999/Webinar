@@ -27,7 +27,10 @@ window.Vue = require('vue');
  */
 
 import Toasted from 'vue-toasted';
+import Vue from 'vue';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
+Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(Toasted, {
     duration: 2000,
     keepOnHover: true,

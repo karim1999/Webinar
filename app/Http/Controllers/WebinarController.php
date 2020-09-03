@@ -9,6 +9,7 @@ use App\Question;
 use App\Resource;
 use App\Setting;
 use App\Speaker;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,6 +62,7 @@ class WebinarController extends Controller
             "polls" => Poll::all(),
             "events" => Event::all(),
             "setting" => Setting::findOrFail(1),
+            "now" => Carbon::now(),
         ]);
     }
     public function getSetting(){

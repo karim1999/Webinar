@@ -1,8 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/timer.css": "/css/timer.css",
     "/css/main.css": "/css/main.css",
     "/js/chat.js": "/js/chat.js",
     "/js/poll.js": "/js/poll.js",
-    "/js/tabs.js": "/js/tabs.js"
+    "/js/tabs.js": "/js/tabs.js",
+    "/js/timer.js": "/js/timer.js"
 }

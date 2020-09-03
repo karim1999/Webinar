@@ -119,6 +119,8 @@ class SettingController extends Controller
         $setting->after_question= $request->post('after_question');
 //        $setting->social_tab_name= $request->post('social_tab_name');
 
+        $setting->event_time= $request->post('event_time');
+
         $setting->save();
         return redirect()->back()->with("status", "The settings were added successfully.");
     }
